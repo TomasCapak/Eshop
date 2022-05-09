@@ -13,7 +13,10 @@
     border-radius: 10px;
 }
 
+.marginrightauto {
 
+    margin-right: auto;
+}
 
 .marginleftbutton{
     margin-left: 35%;
@@ -38,7 +41,7 @@
 
 <body>
 <div class="row">
-<div class="col-md-7">
+<div class="col-md-8 marginrightauto">
 <div class="card">
 <header class="card-header">
 	<h4 class="card-title mt-2">Add Item</h4>

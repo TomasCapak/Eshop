@@ -39,7 +39,7 @@ class Login extends CI_Controller {
     function mainPage() {
         //Bere data o polozce z modelu pro kartu
         $data ['polozky'] = $this->NewModel->getPolozka();
-
+        $data ['category'] = $this->NewModel->getCategory();
         //$data['Elektro'] = $this->NewModel->Elektro();
 
         $data ["title"] = "Hlavni";
@@ -48,17 +48,19 @@ class Login extends CI_Controller {
 
     }
 
-    //  function zkouska($Elektro) {
-        
-    //     $Elektro = $data['Elektro'] = $this->NewModel->Elektro();
-      
+     function Kategorie($nazevKategorie) {
+        $data ['category'] = $this->NewModel->getCategory();
+        $data['polozky'] = $this->NewModel->Kategorie($nazevKategorie);
+        if ($data['polozky'] == NULL){; redirect('hlavni');
+        return;
+        }
+        $data ["main"] = "mainPage";
+        $data ["kategorie"] = $nazevKategorie;
 
-    //     $this->load->view('mainPage', $Elektro);
-    //     $data ["main"] = "mainPage";
-    //     $data['Elektro'] = $this->NewModel->Elektro();
-    //     $this->layout->generate($data);
+       
+        $this->layout->generate($data);
 
-    // }
+    }
 
 
 

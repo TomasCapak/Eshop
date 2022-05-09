@@ -7,7 +7,7 @@ class NewModel extends CI_Model
 
     }
 
-    public function Elektro(){
+    public function Kategorie($nazevKategorie){
 
         // $data = array(
         //         'nazev' => 'Elektro'
@@ -16,7 +16,7 @@ class NewModel extends CI_Model
         $this->db->select('*');
         $this->db->from('polozka');
         $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie'); 
-        $this->db->where(['nazevKategorie' => 'Elektro']);
+        $this->db->where(['nazevKategorie' => $nazevKategorie]);
 
 
         return $this->db->get()->result_array();

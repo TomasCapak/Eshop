@@ -57,7 +57,7 @@ $route['registrace'] = 'Login/registerUser';
 $route['prihlaseni'] = 'Login/loginUser';
 
 $route["hlavni"] = 'Login/mainPage';
-// $route['hlavni/(:any)'] = 'Login/zkouska/$1';
+$route['kategorie/(:any)'] = 'Login/Kategorie/$1';
 
 $route["admin"] = 'Admin/adminPage';
 $route['adminForm'] = 'Admin/adminAddForm';
