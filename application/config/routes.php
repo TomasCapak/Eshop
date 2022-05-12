@@ -58,8 +58,14 @@ $route['prihlaseni'] = 'Login/loginUser';
 
 $route["hlavni"] = 'Login/mainPage';
 $route['kategorie/(:any)'] = 'Login/Kategorie/$1';
+$route['search/(:any)'] = 'Login/Search/$1';
 
 $route["admin"] = 'Admin/adminPage';
-$route['adminForm'] = 'Admin/adminAddForm';
+
+
+$route['adminForm']["GET"] = 'Admin/adminAddForm';
+$route['adminForm']["POST"] = 'Admin/formPost';
+
+
 $route['cart'] = 'Login/cartPage';
 

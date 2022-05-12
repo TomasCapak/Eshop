@@ -23,6 +23,9 @@
 </head>
 
 <body>
+
+
+
     <div class="container">
 <div class="row">
 <div class="col-md-7">
@@ -62,6 +65,6 @@
 </div>
 </div> 
 <!--container end.//-->
-
+<?= var_dump($objednavky)?>
 </body>
 </html>

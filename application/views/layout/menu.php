@@ -32,16 +32,14 @@
                         <div class="mr-auto "> 
                         
                                              
-<div class="input-group marginsearch">
-  <div class="form-outline">
-    <input type="search" id="form1" class="form-control" placeholder="Search" />
-   
-  </div>
-  <button type="button" class="btn btn-primary searchbtn">
+<form class="input-group marginsearch" action="<?php echo base_url('hlavni/');?>" method="get">
+ 
+    <input name="keyword" value="<?php if($this->input->get('keyword'))echo $this->input->get('keyword');?>" type="search" id="form1" class="form-control" placeholder="Search" /> 
+  <button type="submit"  class="btn btn-primary searchbtn">
     <i class="fas fa-search"></i>
 </button>
 
-</div>
+</form>
 
                     </div>
 
@@ -54,7 +52,7 @@
 
                         <li class="nav-item">
                                 
-                                <a class="nav-link" href="cart"><i class="fas fa-shopping-cart"></i></a>
+                                <a class="nav-link" href="<?php echo base_url('cart'); ?>"><i class="fas fa-shopping-cart"></i></a>
                             </li>
                             <li class="nav-item">
                                 

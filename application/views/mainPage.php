@@ -104,7 +104,11 @@
     font-size: 16px;
 
   } */ 
+  figure figcaption {
+           display:block;
+           height:300px;
   
+}
   
 
   .price {
@@ -115,7 +119,33 @@
   .container {
     margin-top: 20px;
   }
+  .marginp {
+
+    margin-top: 30px;
+  }
 </style>
+
+<?php 
+
+
+
+$catalog = array($polozky);
+
+$_SESSION['cart']['nazev']['quantity'] = 5;
+$_SESSION['cart']['nazev']['quantity'] = 2;
+
+
+function getBy($att , $value , $array) {
+  foreach ($array as $key => $val) {
+    if($val[$att] === $value){
+      return $key;
+    }
+  }
+  return null;
+}
+
+?>
+
 <html>
 
 <head>
@@ -126,6 +156,11 @@
 </head>
 
 <body>
+
+
+
+
+
 
 
   <!-- 
@@ -150,6 +185,13 @@
       </div>
   </div>
 
+
+  <?php 
+//print_r($_SESSION['cart']);
+//echo getBy('idPolozka', 1, $catalog);
+
+?>
+
   <?php if (isset($kategorie)) {
     echo "Kategorie: " . $kategorie;
   }
@@ -165,13 +207,12 @@
         <div class="col-md-3">
           <figure class="card card-product">
             <div class="img-wrap">
-              <img src="<?php echo $row['fotka'] ?>">
+              <img src="<?php echo base_url()?>assets/images/<?php echo $row['fotka'] ?>">
             </div>
             <figcaption class="info-wrap">
               <h6 class="title text-dots"><a href="#"><?php echo $row['nazev'] ?></a></h6>
-              <p><?php echo $row['nazevKategorie'] ?></p>
 
-              <p><?php echo $row['popis'] ?></p>
+              <p><?php echo $row['nazevKategorie'] ?></p>
               <div class="action-wrap">
 
 
@@ -182,6 +223,9 @@
                     <!-- <del class="price-old">$1980</del> -->
                 </div> <!-- price-wrap.// -->
               </div> <!-- action-wrap -->
+
+              <p class="marginp"><?php echo $row['popis'] ?></p>
+              
             </figcaption>
           </figure> <!-- card // -->
         </div><!-- col // -->

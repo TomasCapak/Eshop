@@ -12,6 +12,7 @@
  * 
  */
 class Login extends CI_Controller {
+     
 
     //put your code here
     function __construct() {
@@ -31,6 +32,7 @@ class Login extends CI_Controller {
     }
 
     function loginUser() {
+        $data ['objednavky'] = $this->NewModel->getObjednavka();
         $data["title"] = "Přihlášení";
         $data["main"] = "login";
         $this->layout->generate($data);
@@ -40,6 +42,7 @@ class Login extends CI_Controller {
         //Bere data o polozce z modelu pro kartu
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();
+        
         //$data['Elektro'] = $this->NewModel->Elektro();
 
         $data ["title"] = "Hlavni";
@@ -54,6 +57,7 @@ class Login extends CI_Controller {
         if ($data['polozky'] == NULL){; redirect('hlavni');
         return;
         }
+        $data['productSearch'] = $this->NewModel->getSearch();
         $data ["main"] = "mainPage";
         $data ["kategorie"] = $nazevKategorie;
 
@@ -62,16 +66,31 @@ class Login extends CI_Controller {
 
     }
 
+    function Search(){
+        $data ['polozky'] = $this->NewModel->getPolozka();
+        $data ['category'] = $this->NewModel->getCategory();
+        $data['productSearch'] = $this->NewModel->getSearch();
+        
+        $data['main'] = 'mainPage';
+        
+        $this->layout->generate($data);
 
+
+     }
 
 
     function cartPage() {
-        $data ["title"] = "Košík";
-        $data ["main"] = "cartPage";
+        
+        $data ["title"] = "Košík";     
+        $data ['main'] = 'cartPage';
         $this->layout->generate($data);
+        
 
     }
 
-
-
+    
 }
+
+
+
+

@@ -36,10 +36,26 @@
     margin-bottom: 5px;
 }
 
+.marginrightbut{
+margin-right: 6%;
+
+}
+.margintop{
+  margin-top:20px;
+
+}
 </style>
 </head>
 
 <body>
+
+<?php if($this->session->flashdata("status")); ?>
+            <div class="alert alert-success margintop">
+                <?= $this->session->flashdata("status"); ?>
+            </div>
+
+
+
 <div class="row">
 <div class="col-md-8 marginrightauto">
 <div class="card">
@@ -47,16 +63,17 @@
 	<h4 class="card-title mt-2">Add Item</h4>
 </header>
 <article class="card-body">
-<form>
+<form action="<?php echo base_url('adminForm');?>" method="post" enctype="multipart/form-data">
 
 	 <!-- form-row end.// -->
      <div class="form-group">
 
-	    <input class="form-control" name="photo" type="file" placeholder="Photo">
+	    <input class="form-control" name="fotka" type="file" placeholder="Photo">
+        <p><?php if(isset($error)) { echo $error; } ?></p>
 	</div>
 	<div class="form-group ">
 
-		<input type="text" name="name" class="form-control" placeholder="Name">
+		<input type="text" name="nazev" class="form-control" placeholder="Name">
 	</div> <!-- form-group end.// -->
 	 <!-- form-group end.// -->
 	
@@ -65,19 +82,19 @@
 	 <!-- form-row.// -->
 	<div class="form-group">
 
-	    <textarea class="form-control" name="desc" type="text" placeholder="Description"></textarea>
+	    <textarea class="form-control" name="popis" type="text" placeholder="Description"></textarea>
 	</div> <!-- form-group end.// -->  
     <div class="form-group">
 	
-	    <input class="form-control" name="price" type="number" placeholder="Price">
+	    <input class="form-control" name="cena" type="number" placeholder="Price">
 	</div>
 
 
     <div class="form-group ">
-            <label for="cars">Category:</label>
-            <select id="cars" name="cars">
+            <label for="nazevKategorie">Category:</label>
+            <select id="nazevKategorie" name="nazevKategorie">
             <?php foreach ($Kategorie as $row) { ?>        
-            <option value="<?php echo $row['nazevKategorie']?>"><?php echo $row['nazevKategorie']?></option>
+            <option value="<?php echo $row['idKategorie']?>"><?php echo $row['nazevKategorie']?></option>
                     
             <?php   } ?>
                 </select>
@@ -96,7 +113,7 @@
 </div>
 </form>
 </article> <!-- card-body end .// -->
-<div class="border-top card-body text-center">Have an account? <a href="prihlaseni">Log In</a></div>
+<div class="border-top card-body text-center"> <a type="button" class="btn btn-primary marginrightbut" href="<?php echo base_url('admin');?>">BACK</a></div>
 </div> <!-- card.// -->
 </div> <!-- col.//-->
 
