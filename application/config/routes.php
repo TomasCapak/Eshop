@@ -61,11 +61,12 @@ $route['kategorie/(:any)'] = 'Login/Kategorie/$1';
 $route['search/(:any)'] = 'Login/Search/$1';
 
 $route["admin"] = 'Admin/adminPage';
+$route["delete/(:num)"] = "Admin/delete/$1";
 
 
 $route['adminForm']["GET"] = 'Admin/adminAddForm';
 $route['adminForm']["POST"] = 'Admin/formPost';
 
 
-$route['cart'] = 'Login/cartPage';
+$route['cart'] = 'cart/index';
 

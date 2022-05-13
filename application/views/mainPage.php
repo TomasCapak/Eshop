@@ -126,25 +126,11 @@
 </style>
 
 <?php 
-
-
-
-$catalog = array($polozky);
-
-$_SESSION['cart']['nazev']['quantity'] = 5;
-$_SESSION['cart']['nazev']['quantity'] = 2;
-
-
-function getBy($att , $value , $array) {
-  foreach ($array as $key => $val) {
-    if($val[$att] === $value){
-      return $key;
-    }
-  }
-  return null;
-}
-
-?>
+//$catalog = array($polozky);
+//$_SESSION['cart']['nazev']['quantity'] = 5;
+//$cart = $this->session->cart;
+//$cart = $catalog; 
+?> 
 
 <html>
 

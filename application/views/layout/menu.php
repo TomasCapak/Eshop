@@ -47,7 +47,7 @@
                         <ul class="navbar-nav marginnav">
                         <li class="nav-item">
                                 
-                                <a class="nav-link" href="adminForm"><i class="fas fa-plus"></i></a>
+                                <a class="nav-link" href="<?php echo base_url('adminForm');?>"><i class="fas fa-plus"></i></a>
                             </li>
 
                         <li class="nav-item">
@@ -56,7 +56,7 @@
                             </li>
                             <li class="nav-item">
                                 
-                                <a class="nav-link" href="prihlaseni"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                <a class="nav-link" href="<?php echo base_url('prihlaseni');?>"><i class="fas fa-sign-in-alt"></i> Login</a>
                             </li>
                         </ul>
                         

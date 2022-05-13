@@ -1,6 +1,44 @@
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+<html>
+	<head>
+		<title>Cart Info</title>
+	</head>
+	<body>
+		<h3>Cart Info</h3>
+        <table border="1" cellpadding="2" cellspacing="2">
+        	<tr>
+        		<th>Id</th>
+        		<th>Name</th>
+        		<th>Photo</th>
+        		<th>Price</th>
+        		<th>Quantity</th>
+        		<th>Sub Total</th>
+        		<th>Action</th>
+        	</tr>
+        	<?php foreach ($items as $item) { ?>
+        		<tr>
+        			<td><?php echo $item['idPolozka']; ?></td>
+        			<td><?php echo $item['nazev']; ?></td>
+        			<td><img src="<?php echo base_url() ?>assets/images/<?php echo $item['fotka']; ?>" width="50"></td>
+        			<td><?php echo $item['cena']; ?></td>
+        			<td><?php echo $item['quantity']; ?></td>
+        			<td><?php echo $item['cena'] * $item['quantity']; ?></td>
+        			<td align="center">
+        				<a href="<?php echo site_url('cart/remove/'.$item['idPolozka']); ?>">X</a>
+        			</td>
+        		</tr>
+        	<?php } ?>
+        		<tr>
+        			<td colspan="6" align="right">Total</td>
+        			<td><?php echo $total; ?></td>
+        		</tr>
+        </table>
+        <br>
+        <a href="<?php echo site_url('hlavni'); ?>">Continue Shopping</a>
+	</body>
+</html>
 
-
-<style>
+<!-- <style>
     .media-object {
         margin-right: 20px;
 
@@ -90,4 +128,4 @@
             </table>
         </div>
     </div>
-</div>
+</div> -->

@@ -51,6 +51,8 @@ class Login extends CI_Controller {
 
     }
 
+    
+
      function Kategorie($nazevKategorie) {
         $data ['category'] = $this->NewModel->getCategory();
         $data['polozky'] = $this->NewModel->Kategorie($nazevKategorie);
@@ -79,14 +81,7 @@ class Login extends CI_Controller {
      }
 
 
-    function cartPage() {
-        
-        $data ["title"] = "Košík";     
-        $data ['main'] = 'cartPage';
-        $this->layout->generate($data);
-        
-
-    }
+    
 
     
 }

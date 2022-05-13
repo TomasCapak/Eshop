@@ -37,6 +37,7 @@ class NewModel extends CI_Model
             $this->db->select('*');
             $this->db->from('polozka');
             $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+            
             $keyword = $this->input->get('keyword');
             if($keyword){
                 $this->db->like(array('nazev'=>$keyword));
@@ -79,6 +80,14 @@ class NewModel extends CI_Model
         //                 'Kategorie_idKategorie' => $this->input->post('nazevKategorie'));
         //$this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
         $this->db->insert('polozka', $data);
+
+
+     }
+
+     public function deleteData($id){
+            $this->db->where('idPolozka', $id);
+            $this->db->delete('polozka');
+            
 
 
      }

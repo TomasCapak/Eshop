@@ -12,10 +12,20 @@ class Admin extends CI_Controller {
     }
 
     public function adminPage(){
+        $data ['polozky'] = $this->NewModel->getPolozka();
+        $data ['category'] = $this->NewModel->getCategory();
+
         $data["title"] = "Admin";
         $data["main"] = "adminPage";
         $this->layout->generate($data);
     }
+
+    public function delete($id){
+		$this->NewModel->deleteData($id);
+		
+                      redirect(base_url("admin"));
+
+	}
 
     public function adminAddForm(){
 
