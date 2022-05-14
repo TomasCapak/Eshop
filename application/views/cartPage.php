@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+<!-- <?php //defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <html>
 	<head>
 		<title>Cart Info</title>
@@ -15,28 +15,28 @@
         		<th>Sub Total</th>
         		<th>Action</th>
         	</tr>
-        	<?php foreach ($items as $item) { ?>
+        	<?php // foreach ($items as $item) { ?>
         		<tr>
-        			<td><?php echo $item['idPolozka']; ?></td>
-        			<td><?php echo $item['nazev']; ?></td>
-        			<td><img src="<?php echo base_url() ?>assets/images/<?php echo $item['fotka']; ?>" width="50"></td>
-        			<td><?php echo $item['cena']; ?></td>
-        			<td><?php echo $item['quantity']; ?></td>
-        			<td><?php echo $item['cena'] * $item['quantity']; ?></td>
+        			<td><?php // echo $item['idPolozka']; ?></td>
+        			<td><?php //echo $item['nazev']; ?></td>
+        			<td><img src="<?php //echo base_url() ?>assets/images/<?php //echo $item['fotka']; ?>" width="50"></td>
+        			<td><?php //echo $item['cena']; ?></td>
+        			<td><?php //echo $item['quantity']; ?></td>
+        			<td><?php //echo $item['cena'] * $item['quantity']; ?></td>
         			<td align="center">
-        				<a href="<?php echo site_url('cart/remove/'.$item['idPolozka']); ?>">X</a>
+        				<a href="<?php //echo site_url('cart/remove/'.$item['idPolozka']); ?>">X</a>
         			</td>
         		</tr>
-        	<?php } ?>
+        	<?php //} ?>
         		<tr>
         			<td colspan="6" align="right">Total</td>
-        			<td><?php echo $total; ?></td>
+        			<td><?php //echo $total; ?></td>
         		</tr>
         </table>
         <br>
-        <a href="<?php echo site_url('hlavni'); ?>">Continue Shopping</a>
+        <a href="<?php //echo site_url('hlavni'); ?>">Continue Shopping</a>
 	</body>
-</html>
+</html> -->
 
 <!-- <style>
     .media-object {
