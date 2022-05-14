@@ -79,7 +79,7 @@ class Admin extends CI_Controller {
                       ];
                       $product = new NewModel;
                       $res = $product->insertProduct($data);
-                      $this->session->set_flashdata("status", "Product Inserted Successfully");
+                      $this->session->set_flashdata("status", "Položka byla úspěšně vložena.");
                       redirect(base_url("adminForm"));
 
                 }
