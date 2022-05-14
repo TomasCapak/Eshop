@@ -34,7 +34,7 @@
                                              
 <form class="input-group marginsearch" action="<?php echo base_url('hlavni/');?>" method="get">
  
-    <input name="keyword" value="<?php if($this->input->get('keyword'))echo $this->input->get('keyword');?>" type="search" id="form1" class="form-control" placeholder="Search" /> 
+    <input name="keyword" value="<?php if($this->input->get('keyword'))echo $this->input->get('keyword');?>" type="search" id="form1" class="form-control" placeholder="Hledat" /> 
   <button type="submit"  class="btn btn-primary searchbtn">
     <i class="fas fa-search"></i>
 </button>
@@ -56,7 +56,7 @@
                             </li>
                             <li class="nav-item">
                                 
-                                <a class="nav-link" href="<?php echo base_url('prihlaseni');?>"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                <a class="nav-link" href="<?php echo base_url('prihlaseni');?>"><i class="fas fa-sign-in-alt"></i> Přihlášení</a>
                             </li>
                         </ul>
                         

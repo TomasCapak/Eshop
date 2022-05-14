@@ -16,7 +16,12 @@
 
 }
 .marginleftbutton{
-    margin-left: 35%;
+    margin-left: 28%;
+}
+
+.form-group {
+ margin-bottom:10px;
+
 }
 
 </style>
@@ -31,7 +36,7 @@
 <div class="col-md-7">
 <div class="card">
 <header class="card-header">
-	<h4 class="card-title mt-2">Log In</h4>
+	<h4 class="card-title mt-2" style="text-align:center;">Přihlášení</h4>
 </header>
 <article class="card-body">
 <form>
@@ -51,12 +56,12 @@
    
     <br></br>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Login  </button>
+        <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Přihlásit  </button>
     
     </div> <!-- form-group// -->      
 </form>
 </article> <!-- card-body end .// -->
-<div class="border-top card-body text-center">Doesnt have an account? <a href="registrace">Register</a></div>
+<div class="border-top card-body text-center">Ještě nemáte účet? <a href="registrace">Registrujte se!</a></div>
 </div> <!-- card.// -->
 </div> <!-- col.//-->
 

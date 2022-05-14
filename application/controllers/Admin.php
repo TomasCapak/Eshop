@@ -40,6 +40,13 @@ class Admin extends CI_Controller {
     }
 
     function formPost(){
+
+        $this->form_validation->set_rules('nazev', 'nazev', 'required');
+        $this->form_validation->set_rules('popis', 'popis', 'required');
+        $this->form_validation->set_rules('cena', 'cena', 'required');
+
+
+        if ($this->form_validation->run()){
         $ori_fileanme = $_FILES["fotka"]["name"];
         $new_name = time()."".str_replace("","-","$ori_fileanme");
         $config = [ 
@@ -50,14 +57,14 @@ class Admin extends CI_Controller {
         $this->load->library("upload", $config); 
         if ( ! $this->upload->do_upload('fotka'))
                 {
-                        $imageError = array('error' => $this->upload->display_errors());
-
+                        //$imageError = array('error' => $this->upload->display_errors());
                         //$this->load->view("form", $imageError);
+
                         $data["error"] = $this->upload->display_errors();
                         $data['Kategorie'] = $this->NewModel->getCategory();
-                        $data["title"] = "adminForm";
-                        $data["main"] = "adminForm";
-                        $data["page"] = "adminForm";
+                        $data["title"] = "adminAddForm";
+                        $data["main"] = "adminAddForm";
+                        $data["page"] = "adminAddForm";
                         $this->layout->generate($data);
                 }
                 else
@@ -76,6 +83,10 @@ class Admin extends CI_Controller {
                       redirect(base_url("adminForm"));
 
                 }
-    }
+            } else {
+                $this->adminAddForm();
+            }
+    
+            }
 
 }

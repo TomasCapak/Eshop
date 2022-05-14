@@ -205,7 +205,7 @@
                 <div class="price-wrap h5">
 
                   <span class="price-new marginleftprice"><?php echo $row['cena'] ?> CZK</span>
-                  <button href="#" class="btn btn-primary btn-sm float-right marginleftbutton"> Order </a>
+                  <a type="button" href="<?= base_url('cart');?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
                     <!-- <del class="price-old">$1980</del> -->
                 </div> <!-- price-wrap.// -->
               </div> <!-- action-wrap -->
