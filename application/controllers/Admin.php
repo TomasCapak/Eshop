@@ -27,6 +27,26 @@ class Admin extends CI_Controller {
 
 	}
 
+    public function deleteCategory($id){
+		$this->NewModel->deleteCategoryData($id);
+		
+                      redirect(base_url("categoryList"));
+
+	}
+
+
+    function categoryList(){
+
+        $data ['category'] = $this->NewModel->getCategory();
+        $data ['subcategory'] = $this->NewModel->getSubcategory();
+
+        $data["title"] = "categoryList";
+        $data["main"] = "adminCategoryList";
+        $data["page"] = "amdinCategoryList";
+        $this->layout->generate($data);
+
+    }
+
     public function adminAddForm(){
 
         $data['Kategorie'] = $this->NewModel->getCategory();
@@ -38,6 +58,53 @@ class Admin extends CI_Controller {
         $this->layout->generate($data);
         
     }
+
+    public function adminAddCategoryForm(){
+
+        $data['Kategorie'] = $this->NewModel->getCategory();
+        
+
+        $data["title"] = "AdminAddCategoryForm";
+        $data["main"] = "adminAddCategoryForm";
+        $data["page"] = "adminAddCategoryForm";
+        $this->layout->generate($data);
+        
+    }
+
+    function categoryPost(){
+
+        $this->form_validation->set_rules('nazevKategorie', 'Název Kategorie', 'required');
+
+        if($this->form_validation->run())
+        {
+            $data = [
+                "nazevKategorie" => $this->input->post('nazevKategorie')
+            ];
+            $this->load->model('NewModel', 'NewModel');
+            $this->NewModel->insertCategory($data);
+            $this->categoryList();
+        }
+        else
+        {
+            $this->adminAddCategoryForm();
+        }
+
+       
+    }
+
+    function Podkategorie($idKategorie) {
+        $data ['category'] = $this->NewModel->getCategory();
+        $data['subcategory'] = $this->NewModel->Podkategorie($idKategorie);
+        if ($data['subcategory'] == NULL){; redirect('categoryList');
+            return;
+            }
+            $data ["main"] = "subcategoryList";
+            $data ["podkategorie"] = $idKategorie;
+
+        $this->layout->generate($data);
+
+    }
+    
 
     function formPost(){
 

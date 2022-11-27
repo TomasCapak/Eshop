@@ -23,6 +23,17 @@ class NewModel extends CI_Model
    
     }
 
+    public function Podkategorie($idKategorie) {
+        $this->db->select('*');
+        $this->db->from('podkategorie');
+        $this->db->join('kategorie', 'podkategorie.Kategorie_idKategorie_Podkategorie = kategorie.idKategorie');
+        $this->db->where(['idKategorie' => $idKategorie]);
+
+        
+        return $this->db->get()->result_array();
+
+     }
+
     public function getCategory(){
         $this->db->select('*');
         $this->db->from('kategorie');
@@ -71,6 +82,14 @@ class NewModel extends CI_Model
         $this->db->like(array('nazev'=>$keyword));
         return $this->db->get('polozka')->result();
      }
+
+     public function getSubcategory() {
+        $this->db->select('*');
+        $this->db->from('podkategorie');
+        $this->db->join('kategorie', 'podkategorie.Kategorie_idKategorie_Podkategorie = kategorie.idKategorie');
+        return $this->db->get()->result_array();
+
+     }
     
      public function insertProduct($data) {
         // $data = array( 
@@ -84,13 +103,22 @@ class NewModel extends CI_Model
 
      }
 
+     public function insertCategory($data){
+        $this->db->insert('kategorie', $data);
+
+     }
+
      public function deleteData($id){
             $this->db->where('idPolozka', $id);
             $this->db->delete('polozka');
             
-
-
      }
+
+     public function deleteCategoryData($id){
+        $this->db->where('idKategorie', $id);
+        $this->db->delete('kategorie');
+        
+ }
 
 
 }    

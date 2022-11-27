@@ -151,7 +151,7 @@
 
   <!-- 
   <a href="#" class="button" role="button">Link Button</a> -->
-  <div class="container-fluid">
+  <div class="container-fluid sticky-top">
   <div class="row">
 
 
@@ -159,7 +159,7 @@
     foreach ($category as $row) {
     ?>
       <div class="col-lg">
-        <div class="" role="group" aria-label="...">
+        <div class="sticky-top" role="group" aria-label="...">
           <a type="button" href="<?php echo base_url("kategorie/".$row['nazevKategorie'])?>" class="btn btn-block btnn btn-danger"><?php echo $row['nazevKategorie'] ?></a>
           
     </div>

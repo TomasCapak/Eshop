@@ -60,12 +60,22 @@ $route["hlavni"] = 'Login/mainPage';
 $route['kategorie/(:any)'] = 'Login/Kategorie/$1';
 $route['search/(:any)'] = 'Login/Search/$1';
 
+
+$route['podkategorie/(:any)'] = 'Admin/Podkategorie/$1';
+
 $route["admin"] = 'Admin/adminPage';
 $route["delete/(:num)"] = "Admin/delete/$1";
+$route["deleteCategory/(:num)"] = "Admin/deleteCategory/$1";
 
 
 $route['adminForm']["GET"] = 'Admin/adminAddForm';
 $route['adminForm']["POST"] = 'Admin/formPost';
+
+$route['categoryForm']["GET"] = 'Admin/adminAddCategoryForm';
+$route['categoryForm']["POST"] = 'Admin/CategoryPost';
+
+$route["categoryList"] = 'Admin/categoryList';
+
 
 
 $route['cart'] = 'cart/index';

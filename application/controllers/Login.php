@@ -68,6 +68,7 @@ class Login extends CI_Controller {
 
     }
 
+
     function Search(){
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();

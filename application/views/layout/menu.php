@@ -20,7 +20,7 @@
 
 </style>
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary z-depth-5">
     <a class="navbar-brand" href="<?php echo base_url("hlavni"); ?>">Hlavní stránka</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -45,6 +45,12 @@
 
                         </ul>
                         <ul class="navbar-nav marginnav">
+
+                        <li class="nav-item">
+                                
+                                <a class="nav-link" href="<?php echo base_url('categoryList');?>">KATEGORIE</a>
+                            </li>
+
                         <li class="nav-item">
                                 
                                 <a class="nav-link" href="<?php echo base_url('adminForm');?>"><i class="fas fa-plus"></i></a>
