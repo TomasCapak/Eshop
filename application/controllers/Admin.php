@@ -38,7 +38,6 @@ class Admin extends CI_Controller {
     function categoryList(){
 
         $data ['category'] = $this->NewModel->getCategory();
-        $data ['subcategory'] = $this->NewModel->getSubcategory();
 
         $data["title"] = "categoryList";
         $data["main"] = "adminCategoryList";
@@ -92,16 +91,29 @@ class Admin extends CI_Controller {
        
     }
 
-    function Podkategorie($idKategorie) {
-        $data ['category'] = $this->NewModel->getCategory();
-        $data['subcategory'] = $this->NewModel->Podkategorie($idKategorie);
-        if ($data['subcategory'] == NULL){; redirect('categoryList');
-            return;
+    function Podkategorie($idKategorie = null) {
+        if($idKategorie == null){
+            $data ['category'] = $this->NewModel->getCategory();
+            $data["main"] = "adminCategoryList";
+        }
+        else {
+            $data['nadkategorie'] = $this->NewModel->getNadkategorie($idKategorie);
+            $data['subcategory'] = $this->NewModel->getSubcategory($idKategorie);
+            if($data['subcategory'] == null){
+                redirect('podkategorie/'.$data['nadkategorie']);
             }
             $data ["main"] = "subcategoryList";
-            $data ["podkategorie"] = $idKategorie;
 
+        }
         $this->layout->generate($data);
+        // if ($data['subcategory'] == NULL){; redirect('categoryList');
+        //     return;
+        //     }
+        //     $data ["main"] = "subcategoryList";
+        //     $data ["podkategorie"] = $idKategorie;
+
+        //     //var_dump($data["subcategory"]);
+        // $this->layout->generate($data);
 
     }
     

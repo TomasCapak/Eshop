@@ -17,7 +17,7 @@
     display:block;
     height: 75px;
     text-align: center;
-    margin-top: 15px;
+    
     box-sizing: unset;
 
   }
@@ -123,6 +123,9 @@
 
     margin-top: 30px;
   }
+
+  
+
 </style>
 
 <?php 
@@ -157,31 +160,52 @@
 
     <?php
     foreach ($category as $row) {
-    ?>
+      ?>
       <div class="col-lg">
-        <div class="sticky-top" role="group" aria-label="...">
+        <div class="" role="group" aria-label="...">
           <a type="button" href="<?php echo base_url("kategorie/".$row['nazevKategorie'])?>" class="btn btn-block btnn btn-danger"><?php echo $row['nazevKategorie'] ?></a>
           
     </div>
     </div>
         <?php
       }
-        ?>
+      ?>
+    
         
       </div>
   </div>
+      <?php if (isset($kategorie)) {
+        echo "Kategorie: " . $kategorie;
+      }
+      ?>
+  <div class="row">
+  <?php
+    if(isset($podkategorie)){
 
+    
+    foreach ($podkategorie as $row) {
+    ?>
+      <div class="col-lg-1">
+        
+        <a type="button" href="<?php echo base_url("kategorie/".$row['nazevKategorie'])?>" class="btn btn-block btnn btn-secondary"><?php echo $row['nazevKategorie'] ?></a>
+        
+          
 
+    </div>
+        <?php
+      }}
+        ?>
+  </div>
+
+  
+
+ 
   <?php 
 //print_r($_SESSION['cart']);
 //echo getBy('idPolozka', 1, $catalog);
 
 ?>
 
-  <?php if (isset($kategorie)) {
-    echo "Kategorie: " . $kategorie;
-  }
-  ?>
 
 
   <div class="container">

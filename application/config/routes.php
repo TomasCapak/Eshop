@@ -60,7 +60,7 @@ $route["hlavni"] = 'Login/mainPage';
 $route['kategorie/(:any)'] = 'Login/Kategorie/$1';
 $route['search/(:any)'] = 'Login/Search/$1';
 
-
+$route['podkategorie'] = 'Admin/Podkategorie';
 $route['podkategorie/(:any)'] = 'Admin/Podkategorie/$1';
 
 $route["admin"] = 'Admin/adminPage';
@@ -79,4 +79,6 @@ $route["categoryList"] = 'Admin/categoryList';
 
 
 $route['cart'] = 'cart/index';
+
+$route['vsechny_podkategorie/(:num)'] = 'Login/getPodkategorie/$1';
 

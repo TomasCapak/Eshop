@@ -43,6 +43,7 @@ class Login extends CI_Controller {
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();
         
+        
         //$data['Elektro'] = $this->NewModel->Elektro();
 
         $data ["title"] = "Hlavni";
@@ -56,6 +57,7 @@ class Login extends CI_Controller {
      function Kategorie($nazevKategorie) {
         $data ['category'] = $this->NewModel->getCategory();
         $data['polozky'] = $this->NewModel->Kategorie($nazevKategorie);
+        $data ['podkategorie'] = $this->NewModel->getSubcategory($data['polozky'][0]['Kategorie_idKategorie']);
         if ($data['polozky'] == NULL){; redirect('hlavni');
         return;
         }
@@ -80,6 +82,12 @@ class Login extends CI_Controller {
 
 
      }
+
+    function getPodkategorie($idKategorie){
+        $result = $this->NewModel->getAllSubcategoriesID($idKategorie);
+        $result2 = $this->NewModel->getPolozky($result);
+        var_dump($result2);
+    }
 
 
     

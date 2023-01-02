@@ -11,7 +11,8 @@
 <div class="container" style="margin-top: 30px">
   <h2>Seznam Podkategorií</h2>
   
-  <a type="button" href="<?= base_url('categoryList');?>" class="btn btn-primary btn-sm" style="float: right;"> Zpět </a>
+  
+  <?php echo anchor('podkategorie/'.$nadkategorie, 'Zpět', 'class="btn btn-primary btn-sm" style="float: right"'); ?>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -24,12 +25,13 @@
 foreach ($subcategory as $row) {
 ?>
       <tr>
-        <td><?php echo $row['nazevPodkategorie'] ?>
+        <td><?php echo $row['nazevKategorie'] ?>
     
         
     </td>
     
-      
+      <td><a type="button" href="<?php echo base_url("podkategorie/".$row['idKategorie'])?>" class="btn btn-block btnn btn-primary" style="width:200px;height: 50px" >Podkategorie</a></td>
+
         <td><a type="button" href="<?= base_url('Admin')?>/deleteCategory/<?= $row['idKategorie']?>" class="btn btn-danger btn-sm" style="float: right;">Odstranit</a> </td>
 
       </tr>

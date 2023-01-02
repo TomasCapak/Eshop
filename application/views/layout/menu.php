@@ -18,9 +18,11 @@
 
 
 
+
+
 </style>
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary z-depth-5">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary ">
     <a class="navbar-brand" href="<?php echo base_url("hlavni"); ?>">Hlavní stránka</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

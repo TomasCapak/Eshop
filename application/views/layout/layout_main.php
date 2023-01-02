@@ -10,7 +10,7 @@
         <script src="<?php echo base_url('assets/jquery/jquery-3.5.1.min.js'); ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
     </head>
-    <body>
+    <body style="">
         
 
             <div class="container-fluid" id='menu'>
