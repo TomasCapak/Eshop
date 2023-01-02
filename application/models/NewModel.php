@@ -83,12 +83,19 @@ class NewModel extends CI_Model
         return $this->db->get('polozka')->result();
      }
 
-     public function getSubcategory() {
+     public function getSubcategory($id) {
         $this->db->select('*');
-        $this->db->from('podkategorie');
-        $this->db->join('kategorie', 'podkategorie.Kategorie_idKategorie_Podkategorie = kategorie.idKategorie');
+        $this->db->from('kategorie');
+        $this->db->where('nadKategorie ='.$id);
         return $this->db->get()->result_array();
 
+     }
+
+     public function getNadkategorie($id){
+        $this->db->select('nadkategorie');
+        $this->db->from('kategorie');
+        $this->db->where('idKategorie ='.$id);
+        return $this->db->get()->result_array()[0]['nadkategorie'];
      }
     
      public function insertProduct($data) {
@@ -118,11 +125,48 @@ class NewModel extends CI_Model
         $this->db->where('idKategorie', $id);
         $this->db->delete('kategorie');
         
- }
+    }
+
+    public function getAllSubcategoriesID($idKategorie){
+        $this->db->select();
+        $this->db->from('kategorie');
+        $this->db->where('nadKategorie ='.$idKategorie);
+
+        $result = $this->db->get()->result_array();
+
+        if($result == null){
+            return;
+        }
+        else {
+            $array = [];
+            for($i = 0; $i < count($result); $i++){
+                array_push($array, $result[$i]['idKategorie']);
+                $recursion_result = $this->getAllSubcategoriesID($result[$i]['idKategorie']);
+                if($recursion_result != null){
+                    $array = array_merge($array, $recursion_result);
+                }
+            }
+            return $array;
+        }
+    }
+
+
+    public function getPolozky($kategorie){
+        $this->db->select();
+        $this->db->from('polozka');
+        for($i = 0; $i < count($kategorie); $i++){
+            $this->db->or_where('kategorie.idKategorie ='.$kategorie[$i]);
+        }
+        $this->db->join('kategorie', 'kategorie.idKategorie = polozka.Kategorie_idKategorie');
+
+        return $this->db->get()->result_array();
+    }
+    public function orderPolozky($order){
+
+
+    }
 
 
 }    
     
-    
-
 ?>
