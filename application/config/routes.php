@@ -57,7 +57,7 @@ $route['registrace'] = 'Login/registerUser';
 $route['prihlaseni'] = 'Login/loginUser';
 
 $route["hlavni"] = 'Login/mainPage';
-$route['kategorie/(:any)'] = 'Login/Kategorie/$1';
+$route['kategorie/(:any)'] = 'Login/getPodkategorie/$1';
 $route['search/(:any)'] = 'Login/Search/$1';
 
 $route['podkategorie'] = 'Admin/Podkategorie';
@@ -76,8 +76,12 @@ $route['categoryForm']["POST"] = 'Admin/CategoryPost';
 
 $route["categoryList"] = 'Admin/categoryList';
 
+$route["detail/(:any)"] = 'Login/Detail/$1';
 
 
+
+
+$route['addToCart/(:num)'] = "cart/buy/$1";
 $route['cart'] = 'cart/index';
 
 $route['vsechny_podkategorie/(:num)'] = 'Login/getPodkategorie/$1';

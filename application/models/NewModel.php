@@ -33,12 +33,28 @@ class NewModel extends CI_Model
         return $this->db->get()->result_array();
 
      }
+     
+     public function getCategoryByName($name){
+
+        $this->db->select();
+        $this->db->from('kategorie');
+        $this->db->where('nazevKategorie', $name);
+        
+        var_dump($this->db->get()->result());
+     }
 
     public function getCategory(){
         $this->db->select('*');
         $this->db->from('kategorie');
         return $this->db->get()->result_array();
 
+    }
+
+    public function getMainCategory(){
+        $this->db->select('*');
+        $this->db->from('kategorie');
+        $this->db->where('nadKategorie', null);
+        return $this->db->get()->result_array();
     }
 
 
@@ -56,6 +72,20 @@ class NewModel extends CI_Model
                 $this->db->or_like(array('nazevKategorie'=>$keyword));
             }
           return $this->db->get()->result_array();
+
+
+    }
+
+
+    public function getPolozkaByName($nazev){
+
+        $this->db->select('*');
+        $this->db->from('polozka');
+        $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+        $this->db->where('nazev', $nazev);
+       
+        
+        return $this->db->get()->result_array();
 
 
     }
@@ -97,6 +127,13 @@ class NewModel extends CI_Model
         $this->db->where('idKategorie ='.$id);
         return $this->db->get()->result_array()[0]['nadkategorie'];
      }
+
+     public function getKategorieById($nazevKat){
+        $this->db->select('nazevKategorie');
+        $this->db->from('kategorie');
+        $this->db->where('idKategorie ='.$nazevKat);
+        return $this->db->get()->result_array();
+     }
     
      public function insertProduct($data) {
         // $data = array( 
@@ -127,27 +164,42 @@ class NewModel extends CI_Model
         
     }
 
-    public function getAllSubcategoriesID($idKategorie){
+
+    public function getAllSubcategoriesID($nazevKategorie){
+
+        $nazevKategorie = urldecode($nazevKategorie);
+        //$nazevKategorie = normalizer_normalize($nazevKategorie, Normalizer::FORM_D);
+        //$nazevKategorie = urlencode($nazevKategorie);
+
+        $this->db->select('idKategorie, nazevKategorie');
+        $this->db->from('kategorie');
+        $this->db->where("nazevKategorie", $nazevKategorie);
+        $query_result = $this->db->get()->result_array();
+        if (empty($query_result)) {
+            return array();
+        }
+        $idKategorie = $query_result[0]['idKategorie'];
+       
+        $this->db->reset_query();
+    
         $this->db->select();
         $this->db->from('kategorie');
-        $this->db->where('nadKategorie ='.$idKategorie);
-
+        $this->db->where('nadKategorie', $idKategorie);
+    
         $result = $this->db->get()->result_array();
-
-        if($result == null){
-            return;
-        }
-        else {
-            $array = [];
+ 
+        
+        $array = array();
             for($i = 0; $i < count($result); $i++){
-                array_push($array, $result[$i]['idKategorie']);
-                $recursion_result = $this->getAllSubcategoriesID($result[$i]['idKategorie']);
-                if($recursion_result != null){
+                array_push($array, $result[$i]['nazevKategorie']);
+                $recursion_result = $this->getAllSubcategoriesID($result[$i]['nazevKategorie']);
+                if(!empty($recursion_result)){
                     $array = array_merge($array, $recursion_result);
                 }
             }
-            return $array;
-        }
+        
+        return $array;
+        
     }
 
 
@@ -161,6 +213,23 @@ class NewModel extends CI_Model
 
         return $this->db->get()->result_array();
     }
+
+
+    public function getPolozkyOfPodkategorie($idKategorie){
+        $podkategorie = $this->getAllSubcategoriesID($idKategorie);
+        array_push($podkategorie, $idKategorie);
+        $result = array();
+        foreach($podkategorie as $row){
+            $this->db->select();
+            $this->db->from('polozka');
+            $this->db->where('nazevKategorie', $row);
+            $this->db->join('kategorie', 'kategorie.idKategorie = polozka.Kategorie_idKategorie');
+            $result = array_merge($result, $this->db->get()->result());
+        }
+
+        return $result;
+    }
+
     public function orderPolozky($order){
 
 

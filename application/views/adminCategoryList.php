@@ -48,6 +48,3 @@ foreach ($category as $row) {
 
 </html>
 
-<?php  
-var_dump($subcategory);
-?>

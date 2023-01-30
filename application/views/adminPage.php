@@ -156,7 +156,7 @@
 
 
     <?php
-    foreach ($category as $row) {
+    foreach ($mainCategory as $row) {
     ?>
       <div class="col-lg">
         <div class="" role="group" aria-label="...">
@@ -221,7 +221,7 @@
     </div>
   </div>
 
-  <?php echo var_dump($polozky); ?>
+  <?php  ?>
 
 
 

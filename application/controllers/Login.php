@@ -42,9 +42,11 @@ class Login extends CI_Controller {
         //Bere data o polozce z modelu pro kartu
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();
+        $data ['mainCategory'] = $this->NewModel->getMainCategory();
         
         
         //$data['Elektro'] = $this->NewModel->Elektro();
+
 
         $data ["title"] = "Hlavni";
         $data ["main"] = "mainPage";
@@ -61,6 +63,8 @@ class Login extends CI_Controller {
         if ($data['polozky'] == NULL){; redirect('hlavni');
         return;
         }
+
+        
         $data['productSearch'] = $this->NewModel->getSearch();
         $data ["main"] = "mainPage";
         $data ["kategorie"] = $nazevKategorie;
@@ -75,6 +79,9 @@ class Login extends CI_Controller {
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();
         $data['productSearch'] = $this->NewModel->getSearch();
+
+
+        
         
         $data['main'] = 'mainPage';
         
@@ -84,11 +91,52 @@ class Login extends CI_Controller {
      }
 
     function getPodkategorie($idKategorie){
+        
+      
+        $polozkyKategorii = $this->NewModel->getPolozkyOfPodkategorie($idKategorie);
+        $data['polozkyKategorii'] = $polozkyKategorii;
+
+
         $result = $this->NewModel->getAllSubcategoriesID($idKategorie);
-        $result2 = $this->NewModel->getPolozky($result);
-        var_dump($result2);
+        $data['data'] = $result;
+
+    
+        $data['main'] = 'mainPage';
+        $data ['mainCategory'] = $this->NewModel->getMainCategory();
+
+
+        $data ['category'] = $this->NewModel->getCategory();
+        
+        //$data ['kategorieById'] = $this->NewModel->getKategorieById($nazevKat);
+        
+        $data ["kategorie"] = $idKategorie;
+        
+        $data['productSearch'] = $this->NewModel->getSearch();
+
+
+
+        //var_dump($result);
+        // $result2 = $this->NewModel->getPolozky($result);
+        //  var_dump($result2);
+
+        $this->layout->generate($data);
+
+    
     }
 
+    function Detail($nazev){
+
+       
+        $polozkaByName = $this->NewModel->getPolozkaByName($nazev);
+        $data['polozkaByName'] = $polozkaByName;
+
+
+        $data ["title"] = "Detail";     
+        $data['main'] = 'detail';
+        $this->layout->generate($data);
+
+
+     }
 
     
 

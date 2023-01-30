@@ -12,10 +12,10 @@ class Cart extends CI_Controller
 
     public function index()
     {
-        $this->session->cart;
+        var_dump($this->session->cart);
         $data['items'] = array_values(unserialize($this->session->userdata('cart')));
         $data['total'] = $this->total();
-        $this->load->view('cart/index', $data);
+        //$this->load->view('cart/index', $data);
          $data ["title"] = "Košík";     
         $data ['main'] = 'cartPage';
         $this->layout->generate($data);
@@ -23,7 +23,7 @@ class Cart extends CI_Controller
 
     public function buy($id)
     {
-        $product = $this->productModel->find($id);
+        $product = $this->product_model->find($id);
         $item = array(
             'idPolozka' => $product->idPolozka,
             'nazev' => $product->name,

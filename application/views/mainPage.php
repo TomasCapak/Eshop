@@ -145,6 +145,14 @@
 </head>
 
 <body>
+  
+  <?php 
+  //if(isset($data)){
+  //foreach($data as $row){
+  //echo $row;
+  //}} 
+    ?> 
+  
 
 
 
@@ -159,7 +167,7 @@
 
 
     <?php
-    foreach ($category as $row) {
+    foreach ($mainCategory as $row) {
       ?>
       <div class="col-lg">
         <div class="" role="group" aria-label="...">
@@ -174,31 +182,29 @@
         
       </div>
   </div>
-      <?php if (isset($kategorie)) {
-        echo "Kategorie: " . $kategorie;
-      }
-      ?>
+      
   <div class="row">
   <?php
-    if(isset($podkategorie)){
+    if(isset($data)){
 
     
-    foreach ($podkategorie as $row) {
+    foreach ($data as $row) {
     ?>
-      <div class="col-lg-1">
+      <div class="col-lg">
         
-        <a type="button" href="<?php echo base_url("kategorie/".$row['nazevKategorie'])?>" class="btn btn-block btnn btn-secondary"><?php echo $row['nazevKategorie'] ?></a>
-        
+        <a type="button" href="<?php echo base_url("kategorie/".$row)?>" class="btn btn-block btnn btn-primary"><?php echo $row ?></a>
           
-
+       
     </div>
         <?php
       }}
+
+       //echo anchor('kategorie/'.$kategorieById, 'Zpět', 'class="btn btn-primary btn-sm" style="float: right"');
+
         ?>
   </div>
 
   
-
  
   <?php 
 //print_r($_SESSION['cart']);
@@ -206,30 +212,39 @@
 
 ?>
 
-
-
-  <div class="container">
+<div class="container">
     <div class="row">
 
+    <?php if (isset($kategorie)) {
+        echo "Kategorie: " . $kategorie;
+      }
+      ?>
+   
+
       <?php
+        if(isset($polozky)){
+
       foreach ($polozky as $row) {
       ?>
+    
+
         <div class="col-md-3">
+        <a href="detail/<?php echo $row["nazev"] ?>">
           <figure class="card card-product">
             <div class="img-wrap">
-              <img src="<?php echo base_url()?>assets/images/<?php echo $row['fotka'] ?>">
+              <img src="<?php echo base_url()?>assets/images/<?php echo $row["fotka"] ?>">
             </div>
             <figcaption class="info-wrap">
-              <h6 class="title text-dots"><a href="#"><?php echo $row['nazev'] ?></a></h6>
+              <h6 class="title text-dots"><a href="detail/<?php echo $row["nazev"] ?>"><?php echo $row["nazev"] ?></a></h6>
 
-              <p><?php echo $row['nazevKategorie'] ?></p>
+              <p><?php echo $row["nazevKategorie"] ?></p>
               <div class="action-wrap">
 
 
                 <div class="price-wrap h5">
 
-                  <span class="price-new marginleftprice"><?php echo $row['cena'] ?> CZK</span>
-                  <a type="button" href="<?= base_url('cart');?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
+                  <span class="price-new marginleftprice"><?php echo $row["cena"] ?> CZK</span>
+                  <a type="button" href="<?= base_url('addToCart/'.$row["idPolozka"]);?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
                     <!-- <del class="price-old">$1980</del> -->
                 </div> <!-- price-wrap.// -->
               </div> <!-- action-wrap -->
@@ -238,15 +253,91 @@
               
             </figcaption>
           </figure> <!-- card // -->
+          </a>
         </div><!-- col // -->
 
       <?php
-      }
+      }}
       ?>
     </div>
   </div>
 
-  <?php echo var_dump($polozky); ?>
+  <div class="container">
+    <div class="row">
+
+      <?php
+        if(isset($polozkyKategorii)){
+
+      foreach ($polozkyKategorii as $row) {
+      ?>
+    
+
+        <div class="col-md-3">
+        <a href="/lkasjhgslkjghslykdj">
+          <figure class="card card-product">
+            <div class="img-wrap">
+              <img src="<?php echo base_url()?>assets/images/<?php echo $row->fotka ?>">
+            </div>
+            <figcaption class="info-wrap">
+              <h6 class="title text-dots"><a href="#"><?php echo $row->nazev ?></a></h6>
+
+              <p><?php echo $row->nazevKategorie ?></p>
+              <div class="action-wrap">
+
+
+                <div class="price-wrap h5">
+
+                  <span class="price-new marginleftprice"><?php echo $row->cena ?> CZK</span>
+                  <a type="button" href="<?= base_url('addToCart/'.$row->idPolozka);?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
+                    <!-- <del class="price-old">$1980</del> -->
+                </div> <!-- price-wrap.// -->
+              </div> <!-- action-wrap -->
+
+              <p class="marginp"><?php echo $row->popis ?></p>
+              
+            </figcaption>
+          </figure> <!-- card // -->
+          </a>
+        </div><!-- col // -->
+
+      <?php
+      }}
+      ?>
+    </div>
+  </div>
+
+  <?php  ?>
+
+
+  <?php
+  echo anchor(utf8_encode('kategorie/Oblečení'),  'test', 'class="btn btn-danger"');
+$normal_word = normalizer::normalize("Oblečení", Normalizer::FORM_KD);
+echo $normal_word;
+
+
+echo Normalizer::normalize("a´", Normalizer::FORM_C); // á  
+echo Normalizer::normalize("á", Normalizer::FORM_D); // a´
+
+
+if (normalizer_is_normalized($normal_word, Normalizer::FORM_KD)) {
+  echo $normal_word." is normalized";
+} else {
+  echo $normal_word." is not normalized";
+}
+
+if (extension_loaded('intl')) {
+  echo "intl extension is loaded";
+} else {
+  echo "intl extension is not loaded";
+}
+
+$string = "Oblečení";
+$transliterator = Transliterator::createFromRules(':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;', Transliterator::FORWARD);
+echo $normalized = $transliterator->transliterate($string);
+
+
+
+?>
 
 
 

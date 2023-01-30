@@ -15,6 +15,8 @@ class Admin extends CI_Controller {
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();
 
+        $data ['mainCategory'] = $this->NewModel->getMainCategory();
+
         $data["title"] = "Admin";
         $data["main"] = "adminPage";
         $this->layout->generate($data);
@@ -37,7 +39,7 @@ class Admin extends CI_Controller {
 
     function categoryList(){
 
-        $data ['category'] = $this->NewModel->getCategory();
+        $data ['category'] = $this->NewModel->getMainCategory();
 
         $data["title"] = "categoryList";
         $data["main"] = "adminCategoryList";
@@ -77,7 +79,8 @@ class Admin extends CI_Controller {
         if($this->form_validation->run())
         {
             $data = [
-                "nazevKategorie" => $this->input->post('nazevKategorie')
+                "nazevKategorie" => $this->input->post('nazevKategorie'),
+                "nadKategorie" => $this->input->post('nadKategorie')
             ];
             $this->load->model('NewModel', 'NewModel');
             $this->NewModel->insertCategory($data);
@@ -93,7 +96,7 @@ class Admin extends CI_Controller {
 
     function Podkategorie($idKategorie = null) {
         if($idKategorie == null){
-            $data ['category'] = $this->NewModel->getCategory();
+            $data ['category'] = $this->NewModel->getMainCategory();
             $data["main"] = "adminCategoryList";
         }
         else {

@@ -86,7 +86,13 @@
                         </div> <!-- form-group end.// -->
                         <!-- form-group end.// -->
 
-                        
+                        <label for="nadKategorie">Nadkategorie:</label>
+                            <select id="nadKategorie" name="nadKategorie">
+                                <?php foreach ($Kategorie as $row) { ?>
+                                    <option value="<?php echo $row['idKategorie'] ?>"><?php echo $row['nazevKategorie']?></option>
+
+                                <?php   } ?>
+                            </select>
                        
                         <br></br>
                         <div class="form-group">
