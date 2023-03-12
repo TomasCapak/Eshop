@@ -18,6 +18,7 @@ class Login extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('NewModel');
+        $this->config->load('pagination', TRUE);
     }
 
     function registerUser() {
@@ -32,10 +33,37 @@ class Login extends CI_Controller {
     }
 
     function loginUser() {
-        $data ['objednavky'] = $this->NewModel->getObjednavka();
+        
+
+
+
         $data["title"] = "Přihlášení";
         $data["main"] = "login";
         $this->layout->generate($data);
+    }
+
+    function doLogin() {
+
+
+        $identity = $this->input->post('identity');
+        $password = $this->input->post('password');
+       
+    
+        if ($this->ion_auth->login($identity, $password)) {
+            // Login successful
+            redirect('admin'); // Replace with your desired redirect URL
+        } else {
+            // Login failed
+            $this->session->set_flashdata('error', $this->ion_auth->errors());
+            redirect('Login/loginUser'); // Redirect back to the login page
+        }
+
+
+    }
+
+    function logout(){
+        $this->ion_auth->logout();
+        redirect('prihlaseni');
     }
 
     function mainPage() {
@@ -43,6 +71,22 @@ class Login extends CI_Controller {
         $data ['polozky'] = $this->NewModel->getPolozka();
         $data ['category'] = $this->NewModel->getCategory();
         $data ['mainCategory'] = $this->NewModel->getMainCategory();
+
+        
+        
+
+        $config = $this->config->item('pagination');
+        $config['base_url'] = base_url("").'Login/mainPage';
+        $config['total_rows'] =  $this->NewModel->get_total_rows();// Count total rows in your array
+        $config['per_page'] = 8; // The number of items you want to display per page
+       
+
+        $this->pagination->initialize($config);
+
+        $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['results'] = $this->NewModel->get_results($config['per_page'], $offset);
+
+        $data['pagination_links'] = $this->pagination->create_links();
         
         
         //$data['Elektro'] = $this->NewModel->Elektro();
@@ -80,7 +124,7 @@ class Login extends CI_Controller {
         $data ['category'] = $this->NewModel->getCategory();
         $data['productSearch'] = $this->NewModel->getSearch();
 
-
+      
         
         
         $data['main'] = 'mainPage';
@@ -138,8 +182,66 @@ class Login extends CI_Controller {
 
      }
 
-    
+    // public function Pagination(){
+    //     $config = $this->config->item('pagination');
+    //     $config['base_url'] = base_url().'Login/mainPage';
+    //     $config['total_rows'] =  $this->NewModel->get_total_rows();// Count total rows in your array
+    //     $config['per_page'] = 5; // The number of items you want to display per page
 
+    //     $this->pagination->initialize($config);
+
+    //     $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+    //     $data['results'] = $this->NewModel->get_results($config['per_page'], $offset);
+
+    //     $data['pagination_links'] = $this->pagination->create_links();
+    //     $data ["title"] = "Hlavni";
+    //     $data ["main"] = "mainPage";
+    //     $this->layout->generate($data);
+
+    // }     
+        public function sort(){
+            $data ['polozky'] = $this->NewModel->getPolozka();
+            $data ['category'] = $this->NewModel->getCategory();
+            $data ['mainCategory'] = $this->NewModel->getMainCategory();
+    
+            
+            
+    
+            $config = $this->config->item('pagination');
+            $config['base_url'] = base_url("").'Login/mainPage';
+            $config['total_rows'] =  $this->NewModel->get_total_rows();// Count total rows in your array
+            $config['per_page'] = 8; // The number of items you want to display per page
+           
+    
+            $this->pagination->initialize($config);
+    
+            $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data['results'] = $this->NewModel->get_results($config['per_page'], $offset);
+    
+            $data['pagination_links'] = $this->pagination->create_links();
+
+
+
+              
+    $cards = $this->db->get('polozka')->result_array();
+
+ 
+    $card_names = array_column($cards, 'nazev');
+    $card_prices = array_column($cards, 'cena');
+
+    // Sort the card array by name and price
+    array_multisort($card_names, SORT_ASC, SORT_STRING, $card_prices, SORT_ASC, SORT_NUMERIC, $cards);
+
+    // Load the view file and pass the sorted card data to it
+    $data['cards'] = $cards;
+        $data ["title"] = "mainPage";     
+        $data['main'] = 'mainPage';
+        $this->layout->generate($data);
+
+
+
+
+        }
     
 }
 

@@ -148,7 +148,7 @@ img {
     
 var_dump($polozkaByName);
     
-    foreach ($polozkaByName as $row) {
+    
     ?>
   
   <div style="margin: 40px">
@@ -159,24 +159,24 @@ var_dump($polozkaByName);
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane active" id="pic-1"><img src="<?= base_url("assets/images/". $polozkaByName["fotka"]); ?>" /></div>
 						
 						</div>
 						
 						
 					</div>
 					<div class="details col-md-6">
-						<h3 class="product-title"> <?php  $row["nazev"]; ?></h3>
+						<h3 class="product-title"> <?= $polozkaByName["nazev"]; ?></h3>
 						<div class="rating colors">
 							
-							<span class="" >Kategorie:</span>
+							<span class="" >Kategorie: <?= $polozkaByName["nazevKategorie"]; ?></span>
 						</div>
                         
-						<p class="product-description"><?php echo isset($polozkaByName["popis"]) ? $polozkaByName["popis"] : ''; ?></p>
-						<h4 class="price colors">Cena: <span>$180</span></h4>
+						<p class="product-description"><?= $polozkaByName["popis"]; ?></p>
+						<h4 class="price colors">Cena: <span><?= $polozkaByName["cena"]; ?> Kč</span></h4>
 					
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">Přidat do košíku</button>
+							<a href=" <?= base_url('addToCart/'.$polozkaByName["idPolozka"]);?>" class="add-to-cart btn btn-default" type="button">Přidat do košíku</a>
 						</div>
 					</div>
 				</div>
@@ -185,7 +185,7 @@ var_dump($polozkaByName);
 	</div>
   </div>
 
-<?php }?>
+
 
   </body>
 </html>

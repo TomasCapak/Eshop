@@ -205,7 +205,14 @@
                 <div class="price-wrap h5">
 
                   <span class="price-new marginleftprice"><?php echo $row['cena'] ?> CZK</span>
-                  <a type="button" href="<?= base_url('admin')?>/delete/<?= $row['idPolozka']?>" class="btn btn-danger btn-sm float-right marginleftbutton">Odstranit</a>                    <!-- <del class="price-old">$1980</del> -->
+                  <div class="container">
+                    <div class="row">
+                  <a type="button" href="<?= base_url('admin')?>/delete/<?= $row['idPolozka']?>" class="btn btn-danger btn-sm float-right marginleftbutton">Odstranit</a>
+                  </div>
+                  <div class="row">
+                  <a type="button" href="<?= base_url('editForm')."/". $row['nazev']?>" class="btn btn-primary btn-sm float-right marginleftbutton">Upravit</a>                     <!-- <del class="price-old">$1980</del> -->
+                  </div>
+                    </div>
                 </div> <!-- price-wrap.// -->
               </div> <!-- action-wrap -->
 

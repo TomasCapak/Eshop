@@ -85,17 +85,31 @@ class NewModel extends CI_Model
         $this->db->where('nazev', $nazev);
        
         
-        return $this->db->get()->result_array();
+        return $this->db->get()->result_array()[0];
 
 
     }
 
     public function getObjednavka(){
+
         $this->db->select('*');
         $this->db->from('polozka');
         $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
         $this->db->join('objednavka_has_polozka', 'polozka.idPolozka = objednavka_has_polozka.Polozka_idPolozka', 'inner');
         $this->db->join('objednavka', 'objednavka.idObjednavka = objednavka_has_polozka.Objednavka_idObjednavka');
+        return $this->db->get()->result_array();
+
+    }
+
+    public function getObjednavkaById($id){
+        
+        $this->db->select('*');
+        $this->db->from('polozka');
+        $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+        $this->db->join('objednavka_has_polozka', 'polozka.idPolozka = objednavka_has_polozka.Polozka_idPolozka', 'inner');
+        $this->db->join('objednavka', 'objednavka.idObjednavka = objednavka_has_polozka.Objednavka_idObjednavka');
+        $this->db->where('Objednavka_idObjednavka ='.$id);
+
         return $this->db->get()->result_array();
 
     }
@@ -112,6 +126,8 @@ class NewModel extends CI_Model
         $this->db->like(array('nazev'=>$keyword));
         return $this->db->get('polozka')->result();
      }
+
+        
 
      public function getSubcategory($id) {
         $this->db->select('*');
@@ -235,6 +251,60 @@ class NewModel extends CI_Model
 
     }
 
+
+    public function edit($nazev){
+    
+        
+        $this->db->select('*');
+        $this->db->from('polozka');
+        $this->db->where('nazev', $nazev);
+        $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+    
+       
+        
+
+        return $this->db->get()->result_array()[0];
+
+
+    }
+
+    public function updateData( $data){
+ 
+        $this->db->where('nazev', $data['nazev']);
+        $this->db->update('polozka', $data);
+    }
+
+    public function editCategory($id){
+
+        $this->db->select('*');
+        $this->db->from('kategorie');
+        $this->db->where('idKategorie', $id);
+     
+        
+
+        return $this->db->get()->result_array()[0];
+              
+    }
+
+    public function updateCategoryData($id, $data){
+        $this->db->where('idKategorie', $id);
+        $this->db->update('kategorie', $data);
+    }
+
+    public function get_total_rows(){
+        $query = $this->db->get('polozka');
+        return $query->num_rows();
+    }
+
+    public function get_results($limit, $offset)
+    {
+        $this->db->limit($limit, $offset);
+        $this->db->select('*');
+        $this->db->from('polozka');
+        $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }    
     

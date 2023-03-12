@@ -55,6 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['registrace'] = 'Login/registerUser';
 $route['prihlaseni'] = 'Login/loginUser';
+$route['loginAuth'] = 'Login/doLogin';
+$route['odhlaseni'] = 'Login/logout';
 
 $route["hlavni"] = 'Login/mainPage';
 $route['kategorie/(:any)'] = 'Login/getPodkategorie/$1';
@@ -68,21 +70,36 @@ $route["delete/(:num)"] = "Admin/delete/$1";
 $route["deleteCategory/(:num)"] = "Admin/deleteCategory/$1";
 
 
+
+
 $route['adminForm']["GET"] = 'Admin/adminAddForm';
 $route['adminForm']["POST"] = 'Admin/formPost';
 
-$route['categoryForm']["GET"] = 'Admin/adminAddCategoryForm';
-$route['categoryForm']["POST"] = 'Admin/CategoryPost';
+$route['editForm/(:any)']["GET"] = 'Admin/adminEditForm/$1';
+$route['editForm/(:any)']["POST"] = 'Admin/editPost/$1';
+
+$route['categoryForm']["GET"] = 'Admin/adminAddCategoryForm/$1';
+$route['categoryForm']["POST"] = 'Admin/categoryPost/$1';
+
+$route['categoryEditForm/(:any)']["GET"] = 'Admin/categoryEditForm/$1';
+$route['categoryEditForm/(:any)']["POST"] = 'Admin/categoryEditPost/$1';
 
 $route["categoryList"] = 'Admin/categoryList';
 
 $route["detail/(:any)"] = 'Login/Detail/$1';
 
 
-
+$route['sort'] = 'Login/sort';
 
 $route['addToCart/(:num)'] = "cart/buy/$1";
 $route['cart'] = 'cart/index';
+$route['createOrder'] = 'cart/createOrder';
+
+$route['orderList'] = 'Admin/orderList';
+$route['orderDetail/(:any)'] = 'Admin/orderDetail/$1';
 
 $route['vsechny_podkategorie/(:num)'] = 'Login/getPodkategorie/$1';
+
+
+
 

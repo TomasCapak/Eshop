@@ -7,17 +7,28 @@ class Cart extends CI_Controller
     $this->load->model('NewModel');
     $this->load->model('product_model');
     $this->load->library('cart');
+    if(!$this->session->has_userdata('cart')) {
+        $this->session->set_userdata('cart', '');
+    }
+    
 
 }
 
     public function index()
     {
-        var_dump($this->session->cart);
-        $data['items'] = array_values(unserialize($this->session->userdata('cart')));
+
+        if(unserialize($this->session->userdata('cart')) == false){
+            $data['items'] = array();
+            $data['cart_empty'] = true; 
+        }
+        else{
+            $data['items'] = array_values(unserialize($this->session->userdata('cart')));
+            $data['cart_empty'] = false; 
+        }
+            
         $data['total'] = $this->total();
-        //$this->load->view('cart/index', $data);
-         $data ["title"] = "Košík";     
-        $data ['main'] = 'cartPage';
+        $data["title"] = "Košík";     
+        $data['main'] = 'cartPage';
         $this->layout->generate($data);
     }
 
@@ -25,10 +36,10 @@ class Cart extends CI_Controller
     {
         $product = $this->product_model->find($id);
         $item = array(
-            'idPolozka' => $product->idPolozka,
-            'nazev' => $product->name,
-            'fotka' => $product->fotka,
-            'cena' => $product->cena,
+            'idPolozka' => $product['idPolozka'],
+            'nazev' => $product['nazev'],
+            'fotka' => $product['fotka'],
+            'cena' => $product['cena'],
             'quantity' => 1
         );
         if(!$this->session->has_userdata('cart')) {
@@ -36,17 +47,51 @@ class Cart extends CI_Controller
             $this->session->set_userdata('cart', serialize($cart));
         } else {
             $index = $this->exists($id);
-            $cart = array_values(unserialize($this->session->userdata('cart')));
+            $cart = array_values(unserialize($this->session->userdata('cart')) == false ? array() : unserialize($this->session->userdata('cart')));
             if($index == -1) {
+                
                 array_push($cart, $item);
                 $this->session->set_userdata('cart', serialize($cart));
+                //var_dump(unserialize($this->session->userdata('cart')));
             } else {
-                $cart[$index]['quantity']++;
+                
+                $cart[$index++]['quantity']++;
                 $this->session->set_userdata('cart', serialize($cart));
+                //var_dump(unserialize($this->session->userdata('cart')));
             }
         }
+        
         redirect('cart');
     }
+
+
+    public function increment_quantity($id)
+{
+    $cart = unserialize($this->session->userdata('cart'));
+    foreach ($cart as &$item) {
+        if ($item['idPolozka'] == $id) {
+            $item['quantity']++;
+            break;
+        }
+    }
+    $this->session->set_userdata('cart', serialize($cart));
+}
+
+public function decrement_quantity($id)
+{
+    $cart = unserialize($this->session->userdata('cart'));
+    foreach ($cart as &$item) {
+        if ($item['idPolozka'] == $id) {
+            $item['quantity']--;
+            if ($item['quantity'] == 0) {
+                $this->remove($id);
+            }
+            break;
+        }
+    }
+    $this->session->set_userdata('cart', serialize($cart));
+}
+
 
     public function remove($id)
     {
@@ -59,21 +104,47 @@ class Cart extends CI_Controller
 
     private function exists($id)
     {
+        if(unserialize($this->session->userdata('cart')) == false){
+            return -1;
+        }
+        else{
         $cart = array_values(unserialize($this->session->userdata('cart')));
         for ($i = 0; $i < count($cart); $i ++) {
             if ($cart[$i]['idPolozka'] == $id) {
                 return $i;
             }
         }
-        return -1;
+        return -1;}
     }
 
     private function total() {
-        $items = array_values(unserialize($this->session->userdata('cart')));
+        if(unserialize($this->session->userdata('cart')) == false){
+            $items = array();
+        }
+        else{
+            $items = array_values(unserialize($this->session->userdata('cart')));
+        }
+        var_dump($items);
         $s = 0;
         foreach ($items as $item) {
-            $s += $item['cena'] * $item['quantity'];
+           
+                $s += $item['cena'] * $item['quantity'];
         }
         return $s;
     }
+
+    public function createOrder(){
+        if(unserialize($this->session->userdata('cart')) == false){
+            redirect('hlavni') ;
+        }
+        else{
+            $this->product_model->createOrder();
+        }
+        redirect('cart');
+    }
+
+
+
+
+
 }

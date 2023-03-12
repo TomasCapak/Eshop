@@ -1,6 +1,23 @@
 <style>
   
-  
+  .pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
   
   .row>* {
     
@@ -214,97 +231,42 @@
 
 <div class="container">
     <div class="row">
-
-    <?php if (isset($kategorie)) {
-        echo "Kategorie: " . $kategorie;
-      }
-      ?>
-   
-
-      <?php
-        if(isset($polozky)){
-
-      foreach ($polozky as $row) {
-      ?>
-    
-
+        <?php foreach ($results as $row) { ?>
         <div class="col-md-3">
-        <a href="detail/<?php echo $row["nazev"] ?>">
-          <figure class="card card-product">
-            <div class="img-wrap">
-              <img src="<?php echo base_url()?>assets/images/<?php echo $row["fotka"] ?>">
-            </div>
-            <figcaption class="info-wrap">
-              <h6 class="title text-dots"><a href="detail/<?php echo $row["nazev"] ?>"><?php echo $row["nazev"] ?></a></h6>
-
-              <p><?php echo $row["nazevKategorie"] ?></p>
-              <div class="action-wrap">
-
-
-                <div class="price-wrap h5">
-
-                  <span class="price-new marginleftprice"><?php echo $row["cena"] ?> CZK</span>
-                  <a type="button" href="<?= base_url('addToCart/'.$row["idPolozka"]);?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
-                    <!-- <del class="price-old">$1980</del> -->
-                </div> <!-- price-wrap.// -->
-              </div> <!-- action-wrap -->
-
-              <p class="marginp"><?php echo $row['popis'] ?></p>
-              
-            </figcaption>
-          </figure> <!-- card // -->
-          </a>
+            <a href="<?= base_url("detail/"). $row['nazev'] ?>">
+                <figure class="card card-product">
+                    <div class="img-wrap">
+                        <img src="<?php echo base_url()?>assets/images/<?php echo $row['fotka'] ?>">
+                    </div>
+                    <figcaption class="info-wrap">
+                        <h6 class="title text-dots"><a href="<?= base_url("detail/"). $row['nazev'] ?>"><?php echo $row['nazev'] ?></a></h6>
+                        <p><?php echo $row['nazevKategorie'] ?></p>
+                        <div class="action-wrap">
+                            <div class="price-wrap h5">
+                                <span class="price-new marginleftprice"><?php echo $row['cena'] ?> CZK</span>
+                                <a type="button" href="<?= base_url('addToCart/'.$row['idPolozka']);?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
+                            </div> <!-- price-wrap.// -->
+                        </div> <!-- action-wrap -->
+                        <p class="marginp"><?php echo $row['popis'] ?></p>
+                    </figcaption>
+                </figure> <!-- card // -->
+            </a>
         </div><!-- col // -->
-
-      <?php
-      }}
-      ?>
+        <?php } ?>
     </div>
-  </div>
+</div>
 
-  <div class="container">
+<div class="container">
     <div class="row">
-
-      <?php
-        if(isset($polozkyKategorii)){
-
-      foreach ($polozkyKategorii as $row) {
-      ?>
-    
-
-        <div class="col-md-3">
-        <a href="/lkasjhgslkjghslykdj">
-          <figure class="card card-product">
-            <div class="img-wrap">
-              <img src="<?php echo base_url()?>assets/images/<?php echo $row->fotka ?>">
-            </div>
-            <figcaption class="info-wrap">
-              <h6 class="title text-dots"><a href="#"><?php echo $row->nazev ?></a></h6>
-
-              <p><?php echo $row->nazevKategorie ?></p>
-              <div class="action-wrap">
-
-
-                <div class="price-wrap h5">
-
-                  <span class="price-new marginleftprice"><?php echo $row->cena ?> CZK</span>
-                  <a type="button" href="<?= base_url('addToCart/'.$row->idPolozka);?>" class="btn btn-primary btn-sm float-right marginleftbutton"> Koupit </a>
-                    <!-- <del class="price-old">$1980</del> -->
-                </div> <!-- price-wrap.// -->
-              </div> <!-- action-wrap -->
-
-              <p class="marginp"><?php echo $row->popis ?></p>
-              
-            </figcaption>
-          </figure> <!-- card // -->
-          </a>
-        </div><!-- col // -->
-
-      <?php
-      }}
-      ?>
+        
+    <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <?php echo $pagination_links; ?>
+  </ul>
+</nav>
+        </div>
     </div>
-  </div>
+</div>
 
   <?php  ?>
 

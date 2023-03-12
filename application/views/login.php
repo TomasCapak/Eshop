@@ -33,18 +33,23 @@
 
     <div class="container">
 <div class="row">
+<?php if ($this->session->flashdata('error')): ?>
+    <div class="alert alert-danger">
+        <?php echo $this->session->flashdata('error'); ?>
+    </div>
+<?php endif; ?>
 <div class="col-md-7">
 <div class="card">
 <header class="card-header">
 	<h4 class="card-title mt-2" style="text-align:center;">Přihlášení</h4>
 </header>
 <article class="card-body">
-<form>
+<?php echo form_open('loginAuth'); ?>
 
 	 <!-- form-row end.// -->
 	<div class="form-group">
 
-		<input type="username" name="username" class="form-control" placeholder="Username">
+		<input type="username" name="identity" class="form-control" placeholder="Username">
 	</div> <!-- form-group end.// -->
 	 <!-- form-group end.// -->
 	
@@ -59,7 +64,7 @@
         <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Přihlásit  </button>
     
     </div> <!-- form-group// -->      
-</form>
+    <?php echo form_close(); ?>
 </article> <!-- card-body end .// -->
 <div class="border-top card-body text-center">Ještě nemáte účet? <a href="registrace">Registrujte se!</a></div>
 </div> <!-- card.// -->
@@ -70,6 +75,6 @@
 </div>
 </div> 
 <!--container end.//-->
-<?= var_dump($objednavky)?>
+
 </body>
 </html>

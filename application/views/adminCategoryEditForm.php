@@ -72,33 +72,49 @@
         <div class="col-md-8 marginrightauto">
             <div class="card">
                 <header class="card-header">
-                    <h4 class="card-title mt-2" style="text-align:center; ">Přidat kategorii</h4>
+                    <h4 class="card-title mt-2" style="text-align:center; ">Upravit kategorii</h4>
                 </header>
                 <article class="card-body">
-                    <form action="<?php echo base_url('categoryForm'); ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url('categoryEditForm/'. $KategorieById['idKategorie']); ?>" method="POST" enctype="multipart/form-data">
 
                         <!-- form-row end.// -->
                       
                         <div class="form-group ">
 
-                            <input type="text" name="nazevKategorie" class="form-control" placeholder="Název Kategorie">
+                            <input type="text" name="nazevKategorie" class="form-control" value="<?= $KategorieById['nazevKategorie'] ?>">
                             <small><?= form_error('nazevKategorie'); ?></small>
                         </div> <!-- form-group end.// -->
                         <!-- form-group end.// -->
 
                         <label for="nadKategorie">Nadkategorie:</label>
-                            <select id="nadKategorie" name="nadKategorie">
-                            <option value="<?php echo NULL ?>" >Hlavní Kategorie</option>
-                                <?php foreach ($Kategorie as $row) { ?>
-                                    <option value="<?php echo $row['idKategorie'] ?>"><?php echo $row['nazevKategorie']?></option>
-
-                                <?php   } ?>
-                               
-                            </select>
+                       <select id="nadKategorie" name="nadKategorie">
+    <?php if ($KategorieById['nadKategorie'] != "") { ?>
+        <?php
+        $nadKategorie = "";
+        foreach ($Kategorie as $row) {
+            if ($row['idKategorie'] == $KategorieById['nadKategorie']) {
+                $nadKategorie = $row['nazevKategorie'];
+                break;
+            }
+        }
+        ?>
+        <option value="<?= $KategorieById['nadKategorie'] ?>"><?= $nadKategorie ?></option>
+    <?php } ?>
+    <option value="">Hlavní Kategorie</option>
+    
+    <?php foreach ($Kategorie as $row) {
+        if ($row['idKategorie'] != $KategorieById['idKategorie'] && $row['nadKategorie'] != "Hlavní Kategorie") {
+            if($row['nazevKategorie'] != $nadKategorie) {?>
+            <option value="<?= $row['idKategorie'] ?>"><?= $row['nazevKategorie'] ?></option>
+            
+            <?php }?>
+        <?php }
+    } ?>
+</select>
                        
                         <br></br>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Přidat </button>
+                            <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Upravit </button>
                             <?php
                             //if(! error_log() == NULL){
                             //echo base_url('categoryForm');
@@ -117,6 +133,9 @@
         </div> <!-- col.//-->
 
     </div> <!-- row.//-->
+
+
+
 
 
     </div>
