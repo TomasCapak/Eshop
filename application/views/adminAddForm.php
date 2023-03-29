@@ -1,5 +1,4 @@
 <html>
-<!------ Include the above in your HEAD tag ---------->
 
 <head>
     <style>
@@ -77,7 +76,6 @@
                 <article class="card-body">
                     <form action="<?php echo base_url('adminForm'); ?>" method="post" enctype="multipart/form-data">
 
-                        <!-- form-row end.// -->
                         <div class="form-group">
 
 
@@ -90,22 +88,20 @@
                         <div class="form-group ">
 
                             <input type="text" name="nazev" class="form-control" placeholder="Název">
-                            <small><?= form_error('nazev');?></small>
-                        </div> <!-- form-group end.// -->
-                        <!-- form-group end.// -->
+                            <small><?= form_error('nazev'); ?></small>
+                        </div>
 
 
 
-                        <!-- form-row.// -->
                         <div class="form-group">
 
                             <textarea class="form-control" name="popis" type="text" placeholder="Popis"></textarea>
-                            <small><?= form_error('popis');?></small>
-                        </div> <!-- form-group end.// -->
+                            <small><?= form_error('popis'); ?></small>
+                        </div>
                         <div class="form-group">
 
                             <input class="form-control" name="cena" type="number" placeholder="Cena">
-                            <small><?= form_error('cena');?></small>
+                            <small><?= form_error('cena'); ?></small>
                         </div>
 
 
@@ -122,29 +118,28 @@
                         </div>
                         <br></br>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Přidat </button>
+                            <button type="submit" class="btn btn-success btn-block marginleftbutton"> Přidat </button>
                             <?php
                             //if(! error_log() == NULL){
                             //echo base_url('adminForm');
                             //};
                             ?>
-                        </div> <!-- form-group// -->
+                        </div>
 
                     </form>
-                </article> <!-- card-body end .// -->
+                </article>
                 <div class="border-top card-body text-center"> <button type="reset" class="btn btn-block marginrightbut"> Smazat
                         <Table></Table>
                     </button></div>
 
-                <div class="border-top card-body text-center"> <a type="button" class="btn btn-primary marginrightbut" href="<?php echo base_url('admin'); ?>">Admin<Table></Table></a></div>
-            </div> <!-- card.// -->
-        </div> <!-- col.//-->
-
-    </div> <!-- row.//-->
-
+                <div class="border-top card-body text-center"> <a type="button" class="btn btn-primary marginrightbut" href="<?php echo base_url('admin'); ?>">Zpět<Table></Table></a></div>
+                <div class="border-top card-body text-center"> <a type="text" href="<?php echo base_url('excel'); ?>">Přidat pomocí excelu<Table></Table></a></div>
+            </div>
+        </div>
 
     </div>
-    <!--container end.//-->
+    </div>
+
 
 </body>
 

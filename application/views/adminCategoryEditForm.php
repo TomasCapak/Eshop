@@ -1,5 +1,4 @@
 <html>
-<!------ Include the above in your HEAD tag ---------->
 
 <head>
     <style>
@@ -75,43 +74,43 @@
                     <h4 class="card-title mt-2" style="text-align:center; ">Upravit kategorii</h4>
                 </header>
                 <article class="card-body">
-                    <form action="<?= base_url('categoryEditForm/'. $KategorieById['idKategorie']); ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url('categoryEditForm/' . $KategorieById['idKategorie']); ?>" method="POST" enctype="multipart/form-data">
 
-                        <!-- form-row end.// -->
-                      
+                       
+
                         <div class="form-group ">
 
                             <input type="text" name="nazevKategorie" class="form-control" value="<?= $KategorieById['nazevKategorie'] ?>">
                             <small><?= form_error('nazevKategorie'); ?></small>
-                        </div> <!-- form-group end.// -->
-                        <!-- form-group end.// -->
+                        </div> 
+                      
 
                         <label for="nadKategorie">Nadkategorie:</label>
-                       <select id="nadKategorie" name="nadKategorie">
-    <?php if ($KategorieById['nadKategorie'] != "") { ?>
-        <?php
-        $nadKategorie = "";
-        foreach ($Kategorie as $row) {
-            if ($row['idKategorie'] == $KategorieById['nadKategorie']) {
-                $nadKategorie = $row['nazevKategorie'];
-                break;
-            }
-        }
-        ?>
-        <option value="<?= $KategorieById['nadKategorie'] ?>"><?= $nadKategorie ?></option>
-    <?php } ?>
-    <option value="">Hlavní Kategorie</option>
-    
-    <?php foreach ($Kategorie as $row) {
-        if ($row['idKategorie'] != $KategorieById['idKategorie'] && $row['nadKategorie'] != "Hlavní Kategorie") {
-            if($row['nazevKategorie'] != $nadKategorie) {?>
-            <option value="<?= $row['idKategorie'] ?>"><?= $row['nazevKategorie'] ?></option>
-            
-            <?php }?>
-        <?php }
-    } ?>
-</select>
-                       
+                        <select id="nadKategorie" name="nadKategorie">
+                            <?php if ($KategorieById['nadKategorie'] != "") { ?>
+                                <?php
+                                $nadKategorie = "";
+                                foreach ($Kategorie as $row) {
+                                    if ($row['idKategorie'] == $KategorieById['nadKategorie']) {
+                                        $nadKategorie = $row['nazevKategorie'];
+                                        break;
+                                    }
+                                }
+                                ?>
+                                <option value="<?= $KategorieById['nadKategorie'] ?>"><?= $nadKategorie ?></option>
+                            <?php } ?>
+                            <option value="">Hlavní Kategorie</option>
+
+                            <?php foreach ($Kategorie as $row) {
+                                if ($row['idKategorie'] != $KategorieById['idKategorie'] && $row['nadKategorie'] != "Hlavní Kategorie") {
+                                    if ($row['nazevKategorie'] != $nadKategorie) { ?>
+                                        <option value="<?= $row['idKategorie'] ?>"><?= $row['nazevKategorie'] ?></option>
+
+                                    <?php } ?>
+                            <?php }
+                            } ?>
+                        </select>
+
                         <br></br>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Upravit </button>
@@ -120,26 +119,25 @@
                             //echo base_url('categoryForm');
                             //};
                             ?>
-                        </div> <!-- form-group// -->
+                        </div> 
 
                     </form>
-                </article> <!-- card-body end .// -->
+                </article> 
                 <div class="border-top card-body text-center"> <button type="reset" class="btn btn-block marginrightbut"> Smazat
                         <Table></Table>
                     </button></div>
 
                 <div class="border-top card-body text-center"> <a type="button" class="btn btn-primary marginrightbut" href="<?php echo base_url('categoryList'); ?>">Zpět<Table></Table></a></div>
-            </div> <!-- card.// -->
-        </div> <!-- col.//-->
-
-    </div> <!-- row.//-->
+            </div> 
+        </div> 
+    </div> 
 
 
 
 
 
     </div>
-    <!--container end.//-->
+    
 
 </body>
 

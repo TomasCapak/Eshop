@@ -78,7 +78,7 @@
                     <form action="<?php echo base_url('categoryForm'); ?>" method="POST" enctype="multipart/form-data">
 
                         <!-- form-row end.// -->
-                      
+
                         <div class="form-group ">
 
                             <input type="text" name="nazevKategorie" class="form-control" placeholder="Název Kategorie">
@@ -87,18 +87,18 @@
                         <!-- form-group end.// -->
 
                         <label for="nadKategorie">Nadkategorie:</label>
-                            <select id="nadKategorie" name="nadKategorie">
-                            <option value="<?php echo NULL ?>" >Hlavní Kategorie</option>
-                                <?php foreach ($Kategorie as $row) { ?>
-                                    <option value="<?php echo $row['idKategorie'] ?>"><?php echo $row['nazevKategorie']?></option>
+                        <select id="nadKategorie" name="nadKategorie">
+                            <option value="<?php echo NULL ?>">Hlavní Kategorie</option>
+                            <?php foreach ($Kategorie as $row) { ?>
+                                <option value="<?php echo $row['idKategorie'] ?>"><?php echo $row['nazevKategorie'] ?></option>
 
-                                <?php   } ?>
-                               
-                            </select>
-                       
+                            <?php   } ?>
+
+                        </select>
+
                         <br></br>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block marginleftbutton"> Přidat </button>
+                            <button type="submit" class="btn btn-success btn-block marginleftbutton"> Přidat </button>
                             <?php
                             //if(! error_log() == NULL){
                             //echo base_url('categoryForm');

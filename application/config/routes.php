@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -58,15 +58,21 @@ $route['prihlaseni'] = 'Login/loginUser';
 $route['loginAuth'] = 'Login/doLogin';
 $route['odhlaseni'] = 'Login/logout';
 
-$route["hlavni"] = 'Login/mainPage';
+$route["hlavni"] = 'Login/mainPage/1';
+$route['hlavni/(:num)'] = 'Login/mainPage/$1';
 $route['kategorie/(:any)'] = 'Login/getPodkategorie/$1';
 $route['search/(:any)'] = 'Login/Search/$1';
 
 $route['podkategorie'] = 'Admin/Podkategorie';
 $route['podkategorie/(:any)'] = 'Admin/Podkategorie/$1';
 
-$route["admin"] = 'Admin/adminPage';
+
+$route["admin"] = 'Login/mainPage/1';
+$route["admin/(:num)"] = 'Login/mainPage/$1';
 $route["delete/(:num)"] = "Admin/delete/$1";
+$route["activate/(:num)"] = "Admin/activate/$1";
+$route["disableObjednavka/(:num)"] = "Admin/disableObjednavka/$1";
+$route["activateObjednavka/(:num)"] = "Admin/activateObjednavka/$1";
 $route["deleteCategory/(:num)"] = "Admin/deleteCategory/$1";
 
 
@@ -100,6 +106,18 @@ $route['orderDetail/(:any)'] = 'Admin/orderDetail/$1';
 
 $route['vsechny_podkategorie/(:num)'] = 'Login/getPodkategorie/$1';
 
+$route['search'] = 'Login/searchPost';
 
+$route['sort_cards/(:any)'] = 'Login/sort_cards/$1';
 
+$route['admin/ordersByDate'] = 'admin/ordersByDate';
 
+$route['admin/generate_pdf/(:num)'] = 'admin/generatePdf/$1';
+
+$route['neaktivni'] = 'admin/disabledProducts';
+
+$route['pridat-polozky'] = 'Admin/import_products';
+
+$route['excel'] = 'Admin/excelButton';
+
+$route['objednavkaSuccess'] = 'Login/putOrder';

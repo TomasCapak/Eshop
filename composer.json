@@ -11,7 +11,10 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.3.7"
+		"php": ">=5.3.7",
+		"dompdf/dompdf": "^2.0",
+		"eternicode/bootstrap-datepicker": "^1.9",
+		"phpoffice/phpspreadsheet": "^1.28"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
@@ -19,5 +22,10 @@
 	"require-dev": {
 		"mikey179/vfsstream": "1.1.*",
 		"phpunit/phpunit": "4.* || 5.*"
+	},
+	"config": {
+		"allow-plugins": {
+			"robloach/component-installer": true
+		}
 	}
 }

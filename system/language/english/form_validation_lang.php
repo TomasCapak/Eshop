@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -35,35 +36,35 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-$lang['form_validation_required']		= 'Pole {field} musí být vyplněné.';
-$lang['form_validation_isset']			= 'The {field} field must have a value.';
-$lang['form_validation_valid_email']		= 'The {field} field must contain a valid email address.';
-$lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';
-$lang['form_validation_valid_url']		= 'The {field} field must contain a valid URL.';
-$lang['form_validation_valid_ip']		= 'The {field} field must contain a valid IP.';
-$lang['form_validation_valid_base64']		= 'The {field} field must contain a valid Base64 string.';
-$lang['form_validation_min_length']		= 'The {field} field must be at least {param} characters in length.';
-$lang['form_validation_max_length']		= 'The {field} field cannot exceed {param} characters in length.';
-$lang['form_validation_exact_length']		= 'The {field} field must be exactly {param} characters in length.';
-$lang['form_validation_alpha']			= 'The {field} field may only contain alphabetical characters.';
-$lang['form_validation_alpha_numeric']		= 'The {field} field may only contain alpha-numeric characters.';
-$lang['form_validation_alpha_numeric_spaces']	= 'The {field} field may only contain alpha-numeric characters and spaces.';
-$lang['form_validation_alpha_dash']		= 'The {field} field may only contain alpha-numeric characters, underscores, and dashes.';
-$lang['form_validation_numeric']		= 'The {field} field must contain only numbers.';
-$lang['form_validation_is_numeric']		= 'The {field} field must contain only numeric characters.';
-$lang['form_validation_integer']		= 'The {field} field must contain an integer.';
-$lang['form_validation_regex_match']		= 'The {field} field is not in the correct format.';
-$lang['form_validation_matches']		= 'The {field} field does not match the {param} field.';
-$lang['form_validation_differs']		= 'The {field} field must differ from the {param} field.';
-$lang['form_validation_is_unique'] 		= 'The {field} field must contain a unique value.';
-$lang['form_validation_is_natural']		= 'The {field} field must only contain digits.';
-$lang['form_validation_is_natural_no_zero']	= 'The {field} field must only contain digits and must be greater than zero.';
-$lang['form_validation_decimal']		= 'The {field} field must contain a decimal number.';
-$lang['form_validation_less_than']		= 'The {field} field must contain a number less than {param}.';
-$lang['form_validation_less_than_equal_to']	= 'The {field} field must contain a number less than or equal to {param}.';
-$lang['form_validation_greater_than']		= 'The {field} field must contain a number greater than {param}.';
-$lang['form_validation_greater_than_equal_to']	= 'The {field} field must contain a number greater than or equal to {param}.';
-$lang['form_validation_error_message_not_set']	= 'Unable to access an error message corresponding to your field name {field}.';
-$lang['form_validation_in_list']		= 'The {field} field must be one of: {param}.';
+$lang['form_validation_required'] = 'Pole {field} musí být vyplněné.';
+$lang['form_validation_isset'] = 'Pole {field} musí mít hodnotu.';
+$lang['form_validation_valid_email'] = 'Pole {field} musí obsahovat platnou e-mailovou adresu.';
+$lang['form_validation_valid_emails'] = 'Pole {field} musí obsahovat pouze platné e-mailové adresy.';
+$lang['form_validation_valid_url'] = 'Pole {field} musí obsahovat platnou URL adresu.';
+$lang['form_validation_valid_ip'] = 'Pole {field} musí obsahovat platnou IP adresu.';
+$lang['form_validation_valid_base64'] = 'Pole {field} musí obsahovat platný Base64 řetězec.';
+$lang['form_validation_min_length'] = 'Pole {field} musí obsahovat minimálně {param} znaků.';
+$lang['form_validation_max_length'] = 'Pole {field} nesmí překročit délku {param} znaků.';
+$lang['form_validation_exact_length'] = 'Pole {field} musí obsahovat přesně {param} znaků.';
+$lang['form_validation_alpha'] = 'Pole {field} může obsahovat pouze písmena.';
+$lang['form_validation_alpha_numeric'] = 'Pole {field} může obsahovat pouze alfanumerické znaky.';
+$lang['form_validation_alpha_numeric_spaces'] = 'Pole {field} může obsahovat pouze alfanumerické znaky a mezery.';
+$lang['form_validation_alpha_dash'] = 'Pole {field} může obsahovat pouze alfanumerické znaky, podtržítka a pomlčky.';
+$lang['form_validation_numeric'] = 'Pole {field} musí obsahovat pouze čísla.';
+$lang['form_validation_is_numeric'] = 'Pole {field} musí obsahovat pouze číselné znaky.';
+$lang['form_validation_integer'] = 'Pole {field} musí obsahovat celé číslo.';
+$lang['form_validation_regex_match'] = 'Pole {field} není v požadovaném formátu.';
+$lang['form_validation_matches'] = 'Pole {field} se neshoduje s polem {param}.';
+$lang['form_validation_differs'] = 'Pole {field} musí být odlišné od pole {param}.';
+$lang['form_validation_is_unique'] = 'Pole {field} musí obsahovat unikátní hodnotu.';
+$lang['form_validation_is_natural'] = 'Pole {field} musí obsahovat pouze číslice.';
+$lang['form_validation_is_natural_no_zero'] = 'Pole {field} musí obsahovat pouze číslice a být větší než nula.';
+$lang['form_validation_decimal'] = 'Pole {field} musí obsahovat desetinné číslo.';
+$lang['form_validation_less_than'] = 'Pole {field} musí obsahovat číslo menší než {param}.';
+$lang['form_validation_less_than_equal_to'] = 'Pole {field} musí obsahovat číslo menší nebo rovno {param}.';
+$lang['form_validation_greater_than'] = 'Pole {field} musí obsahovat číslo větší než {param}.';
+$lang['form_validation_greater_than_equal_to'] = 'Pole {field} musí obsahovat číslo větší nebo rovno {param}.';
+$lang['form_validation_error_message_not_set'] = 'Není možné získat chybovou zprávu odpovídající názvu pole {field}.';
+$lang['form_validation_in_list'] = 'Pole {field} musí být jedno z: {param}.';

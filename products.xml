@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <nazev>Product 1</nazev>
+        <popis>aasdadsadadasddassdads</popis>
+        <cena>1000</cena>
+        <Kategorie_idKategorie>1</Kategorie_idKategorie>
+    </product>
+    <product>
+         <nazev>Product 2</nazev>
+        <popis>aasdadsadadasddassdads</popis>
+        <cena>2000</cena>
+        <Kategorie_idKategorie>1</Kategorie_idKategorie>
+    </product>
+</products>

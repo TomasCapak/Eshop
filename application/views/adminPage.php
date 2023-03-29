@@ -1,20 +1,18 @@
 <style>
-  
-  
-  
   .row>* {
-    
-   
-     padding-left: unset;
-   
+
+
+    padding-left: unset;
+
 
 
   }
+
   .btnn {
 
-    
+
     width: 100%;
-    display:block;
+    display: block;
     height: 75px;
     text-align: center;
     margin-top: 15px;
@@ -24,18 +22,21 @@
 
   .a {
     width: 100%;
-    display:block;
+    display: block;
 
   }
 
   .btn {
     display: inline-flex;
-    justify-content: center; /* center the content horizontally */
-    align-items: center; /* center the content vertically */
+    justify-content: center;
+    /* center the content horizontally */
+    align-items: center;
+    /* center the content vertically */
     --padding-x: 1.2em;
-    border-color: black; /* hide button border */
+    border-color: black;
+    /* hide button border */
     border: 1px solid;
-    
+
   }
 
   .divbtn {
@@ -95,7 +96,7 @@
   /* .button {
     background-color: #4CAF50;
     /* Green */
-    /* border: none;
+  /* border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -103,13 +104,13 @@
     display: inline-block;
     font-size: 16px;
 
-  } */ 
+  } */
   figure figcaption {
-           display:block;
-           height:300px;
-  
-}
-  
+    display: block;
+    height: 300px;
+
+  }
+
 
   .price {
     margin-top: 10px;
@@ -119,23 +120,24 @@
   .container {
     margin-top: 20px;
   }
+
   .marginp {
 
     margin-top: 30px;
   }
 </style>
 
-<?php 
+<?php
 //$catalog = array($polozky);
 //$_SESSION['cart']['nazev']['quantity'] = 5;
 //$cart = $this->session->cart;
 //$cart = $catalog; 
-?> 
+?>
 
 <html>
 
 <head>
-<title>Eshop</title>
+  <title>Eshop</title>
 
 
   <!------ Include the above in your HEAD tag ---------->
@@ -152,31 +154,31 @@
   <!-- 
   <a href="#" class="button" role="button">Link Button</a> -->
   <div class="container-fluid">
-  <div class="row">
+    <div class="row">
 
 
-    <?php
-    foreach ($mainCategory as $row) {
-    ?>
-      <div class="col-lg">
-        <div class="" role="group" aria-label="...">
-          <a type="button" href="<?php echo base_url("kategorie/".$row['nazevKategorie'])?>" class="btn btn-block btnn btn-danger"><?php echo $row['nazevKategorie'] ?></a>
-          
-    </div>
-    </div>
-        <?php
+      <?php
+      foreach ($mainCategory as $row) {
+      ?>
+        <div class="col-lg">
+          <div class="" role="group" aria-label="...">
+            <a type="button" href="<?php echo base_url("kategorie/" . $row['nazevKategorie']) ?>" class="btn btn-block btnn btn-danger"><?php echo $row['nazevKategorie'] ?></a>
+
+          </div>
+        </div>
+      <?php
       }
-        ?>
-        
-      </div>
+      ?>
+
+    </div>
   </div>
 
 
-  <?php 
-//print_r($_SESSION['cart']);
-//echo getBy('idPolozka', 1, $catalog);
+  <?php
+  //print_r($_SESSION['cart']);
+  //echo getBy('idPolozka', 1, $catalog);
 
-?>
+  ?>
 
   <?php if (isset($kategorie)) {
     echo "Kategorie: " . $kategorie;
@@ -193,7 +195,7 @@
         <div class="col-md-3">
           <figure class="card card-product">
             <div class="img-wrap">
-              <img src="<?php echo base_url()?>assets/images/<?php echo $row['fotka'] ?>">
+              <img src="<?php echo base_url() ?>assets/images/<?php echo $row['fotka'] ?>">
             </div>
             <figcaption class="info-wrap">
               <h6 class="title text-dots"><a href="#"><?php echo $row['nazev'] ?></a></h6>
@@ -207,17 +209,17 @@
                   <span class="price-new marginleftprice"><?php echo $row['cena'] ?> CZK</span>
                   <div class="container">
                     <div class="row">
-                  <a type="button" href="<?= base_url('admin')?>/delete/<?= $row['idPolozka']?>" class="btn btn-danger btn-sm float-right marginleftbutton">Odstranit</a>
-                  </div>
-                  <div class="row">
-                  <a type="button" href="<?= base_url('editForm')."/". $row['nazev']?>" class="btn btn-primary btn-sm float-right marginleftbutton">Upravit</a>                     <!-- <del class="price-old">$1980</del> -->
-                  </div>
+                      <a type="button" href="<?= base_url('admin') ?>/delete/<?= $row['idPolozka'] ?>" class="btn btn-danger btn-sm float-right marginleftbutton">Odstranit</a>
                     </div>
+                    <div class="row">
+                      <a type="button" href="<?= base_url('editForm') . "/" . $row['nazev'] ?>" class="btn btn-primary btn-sm float-right marginleftbutton">Upravit</a> <!-- <del class="price-old">$1980</del> -->
+                    </div>
+                  </div>
                 </div> <!-- price-wrap.// -->
               </div> <!-- action-wrap -->
 
               <p class="marginp"><?php echo $row['popis'] ?></p>
-              
+
             </figcaption>
           </figure> <!-- card // -->
         </div><!-- col // -->
