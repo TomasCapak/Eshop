@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'eu-cdbr-west-03.cleardb.net',
+	'username' => 'b61fd9856ea469',
+	'password' => 'f53327e7',
 	'database' => 'capak',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'ci_',
