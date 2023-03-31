@@ -23,6 +23,7 @@ class NewModel extends CI_Model
             $this->db->select();
             $this->db->from('ci_polozka');
             $this->db->join('ci_kategorie AS k', 'ci_polozka.Kategorie_idKategorie = k.idKategorie');
+            $this->db->where('ci_polozka.aktivni', 1);
 
 
             foreach ($subcategory_ids as $row) {
@@ -65,7 +66,7 @@ class NewModel extends CI_Model
         $this->db->from('polozka');
         $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
         $this->db->where(['nazevKategorie' => $nazevKategorie]);
-
+        $this->db->where('ci_polozka.aktivni', 1);
 
         return $this->db->get()->result_array();
     }
@@ -185,6 +186,7 @@ class NewModel extends CI_Model
         $this->db->from('polozka');
         $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
         $this->db->where('nazev', $nazev);
+        $this->db->where('ci_polozka.aktivni', 1);
 
         $result = $this->db->get()->result_array();
 
@@ -373,6 +375,7 @@ class NewModel extends CI_Model
             $this->db->or_where('kategorie.idKategorie =' . $kategorie[$i]);
         }
         $this->db->join('kategorie', 'kategorie.idKategorie = polozka.Kategorie_idKategorie');
+        $this->db->where('ci_polozka.aktivni', 1);
 
         return $this->db->get()->result_array();
     }
@@ -388,6 +391,7 @@ class NewModel extends CI_Model
             $this->db->from('polozka');
             $this->db->where('nazevKategorie', $row);
             $this->db->join('kategorie', 'kategorie.idKategorie = polozka.Kategorie_idKategorie');
+            $this->db->where('ci_polozka.aktivni', 1);
             $result = array_merge($result, $this->db->get()->result_array());
         }
 
@@ -451,6 +455,7 @@ class NewModel extends CI_Model
         $this->db->select('*');
         $this->db->from('polozka');
         $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+        $this->db->where('ci_polozka.aktivni', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -460,6 +465,7 @@ class NewModel extends CI_Model
         $this->db->select('idPolozka, nazev');
         $this->db->from('polozka');
         $this->db->like("nazev",  $search_string, 'both');
+        $this->db->where('ci_polozka.aktivni', 1);
         $query = $this->db->get();
 
 
@@ -475,6 +481,7 @@ class NewModel extends CI_Model
         $this->db->select('*');
         $this->db->from('polozka');
         $this->db->join('kategorie', 'polozka.Kategorie_idKategorie = kategorie.idKategorie');
+        $this->db->where('ci_polozka.aktivni', 1);
 
         switch ($sort_by) {
             case 'price_asc':
