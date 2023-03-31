@@ -97,9 +97,9 @@ $route["detail/(:any)"] = 'Login/Detail/$1';
 
 $route['sort'] = 'Login/sort';
 
-$route['addToCart/(:num)'] = "cart/buy/$1";
+$route['addToCart/(:num)'] = "Cart/buy/$1";
 $route['cart'] = 'cart/index';
-$route['createOrder'] = 'cart/createOrder';
+$route['createOrder'] = 'Cart/createOrder';
 
 $route['orderList'] = 'Admin/orderList';
 $route['orderDetail/(:any)'] = 'Admin/orderDetail/$1';
@@ -110,11 +110,11 @@ $route['search'] = 'Login/searchPost';
 
 $route['sort_cards/(:any)'] = 'Login/sort_cards/$1';
 
-$route['admin/ordersByDate'] = 'admin/ordersByDate';
+$route['admin/ordersByDate'] = 'Admin/ordersByDate';
 
-$route['admin/generate_pdf/(:num)'] = 'admin/generatePdf/$1';
+$route['admin/generate_pdf/(:num)'] = 'Admin/generatePdf/$1';
 
-$route['neaktivni'] = 'admin/disabledProducts';
+$route['neaktivni'] = 'Admin/disabledProducts';
 
 $route['pridat-polozky'] = 'Admin/import_products';
 
