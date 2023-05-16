@@ -201,12 +201,12 @@ class Admin extends CI_Controller
         $this->layout->generate($data);
     }
 
-    function adminEditForm($nazev)
+   public function adminEditForm($nazev)
     {
-        $data['editData'] = $this->NewModel->edit($nazev);
+        $decodedNazev = urldecode($nazev);
+
+        $data['editData'] = $this->NewModel->edit($decodedNazev);
         $data['Kategorie'] = $this->NewModel->getCategory();
-
-
 
         $data["title"] = "Upravit Položku";
         $data["main"] = "adminEditForm";
